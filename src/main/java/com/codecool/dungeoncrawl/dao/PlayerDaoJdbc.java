@@ -37,7 +37,7 @@ public class PlayerDaoJdbc implements PlayerDao {
     }
 
     @Override
-    public PlayerModel get(int id) {
+    public PlayerModel get(String playerName) {
         return null;
     }
 
