@@ -66,7 +66,6 @@ public class GameStateDaoJdbc implements GameStateDao {
         } catch (SQLException e) {
             throw new RuntimeException("Error while reading game with id: " + id, e);
         }
-
     }
 
     @Override
@@ -84,6 +83,18 @@ public class GameStateDaoJdbc implements GameStateDao {
             return games;
         } catch (SQLException e) {
             throw new RuntimeException("Error while reading all games", e);
+        }
+    }
+
+    @Override
+    public void delete(int id){
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "DELETE FROM game_state WHERE id = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("You cannot delete game with id: " + id, e);
         }
     }
 }
