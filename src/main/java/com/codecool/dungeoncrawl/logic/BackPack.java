@@ -9,11 +9,18 @@ public class BackPack {
     private Player owner;
     private Item tempPocket;
     private int size = 10;
+
+
     private ArrayList<Item> backpack = new ArrayList<>();
 
     public BackPack(Player owner) {
         this.owner = owner;
     }
+
+    public void addItemToBackPackDirecly(Item item){
+        backpack.add(item);
+    }
+
 
     public void addItemToBackPack(){
         if (tempPocket != null){
