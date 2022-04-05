@@ -3,6 +3,7 @@ package com.codecool.dungeoncrawl.dao;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.actors.*;
 import com.codecool.dungeoncrawl.logic.items.*;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.io.FileWriter;
@@ -11,10 +12,11 @@ import java.util.ArrayList;
 
 
 public class JSONsave {
+    private JSONArray savedGame;
 
+    public JSONArray getSavedGame() { return savedGame; }
 
-    public static void main( String[] args )
-    {
+    public void saveToJSON(){
 
         //--------------------TEST---------------------------
         ArrayList<Object> allObjects = new ArrayList<>();
@@ -57,153 +59,101 @@ public class JSONsave {
         allObjects.add(władek);
         //-------------------------KONIEC-TESTU-----------------------
 
+        this.savedGame = getJSONifiedGameData(allObjects);
+        writeToFile("savedGame.json");
+    }
+
+    private JSONArray getJSONifiedGameData(ArrayList<Object> allObjects){
+        JSONArray gameSave = new JSONArray();
+
+        JSONArray actorsList = new JSONArray();
+        JSONArray itemsList = new JSONArray();
+        JSONObject player = new JSONObject();
+        JSONObject mapLink = getMapLinkJSONObject();
 
 
-        JSONObject actors = new JSONObject();
-
-        JSONObject gosts = new JSONObject();
-        JSONObject goblins = new JSONObject();
-        JSONObject monsters = new JSONObject();
-        JSONObject skeletons = new JSONObject();
-
-
-        JSONObject items = new JSONObject();
-
-        JSONObject cheeses = new JSONObject();
-        JSONObject crowns = new JSONObject();
-        JSONObject swords = new JSONObject();
-        JSONObject swords1 = new JSONObject();
-        JSONObject helmets = new JSONObject();
-        JSONObject keys = new JSONObject();
-
-        JSONObject savedGame = new JSONObject();
-
-        int countOfGhosts = 0;
-        int countOfGoblins = 0;
-        int countOfMonster = 0;
-        int countOfSkeletons = 0;
-        int cheeseCountOnMap = 0;
-        int keyCountOnMap = 0;
         for (Object object : allObjects){
-            if (object instanceof Ghost){
-                countOfGhosts ++;
-                JSONObject enemy = new JSONObject();
-                enemy.put("X", ((Ghost) object).getX());
-                enemy.put("Y", ((Ghost) object).getY());
-                enemy.put("HP", ((Ghost) object).getHealth());
-                gosts.put("Ghost" + countOfGhosts, enemy);
-            } else if (object instanceof Goblin){
-                countOfGoblins ++;
-                JSONObject enemy = new JSONObject();
-                enemy.put("X", ((Goblin) object).getX());
-                enemy.put("Y", ((Goblin) object).getY());
-                enemy.put("HP", ((Goblin) object).getHealth());
-                goblins.put("Goblin" + countOfGoblins, enemy);
-            } else if (object instanceof Monster) {
-                countOfMonster ++;
-                JSONObject enemy = new JSONObject();
-                enemy.put("X", ((Monster) object).getX());
-                enemy.put("Y", ((Monster) object).getY());
-                enemy.put("HP", ((Monster) object).getHealth());
-                monsters.put("Monster" + countOfMonster, enemy);
-            } else if (object instanceof Skeleton) {
-                countOfSkeletons ++;
-                JSONObject enemy = new JSONObject();
-                enemy.put("X", ((Skeleton) object).getX());
-                enemy.put("Y", ((Skeleton) object).getY());
-                enemy.put("HP", ((Skeleton) object).getHealth());
-                skeletons.put("Skeleton" + countOfSkeletons, enemy);
-            } else if (object instanceof Player) {
-                JSONObject enemy = new JSONObject();
-                enemy.put("X", ((Player) object).getX());
-                enemy.put("Y", ((Player) object).getY());
-                enemy.put("HP", ((Player) object).getHealth());
-                enemy.put("Attack", ((Player) object).getAttackPower());
-                enemy.put("Shield", ((Player) object).getShield());
-                JSONObject backPack = new JSONObject();
-                int cheeseCountForBackpack = 0;
-                for (Item item : ((Player) object).backpack.getBackpackContent()){
-                    if (item instanceof Cheese){
-                        cheeseCountForBackpack++;
-                    } else if (item instanceof Sword){
-                        backPack.put("Sword", true);
-                    } else if (item instanceof Sword1){
-                        backPack.put("Sword1", true);
-                    } else if (item instanceof Helmet){
-                        backPack.put("Helmet", true);
-                    } else if (item instanceof Crown){
-                        backPack.put("Crown", true);
-                    } else if (item instanceof Key){
-                        backPack.put("Key", true);
-                    }
-                }
-                backPack.put("Cheese", cheeseCountForBackpack);
-                enemy.put("backPack", backPack);
-                actors.put("Player", enemy);
-            } else if (object instanceof Cheese){
-                cheeseCountOnMap ++;
-                JSONObject item = new JSONObject();
-                item.put("X", ((Cheese) object).getCell().getX());
-                item.put("Y", ((Cheese) object).getCell().getY());
-                cheeses.put("Cheese" + cheeseCountOnMap, item);
-                items.put("Cheeses", cheeses);
-            } else if (object instanceof Key){
-                keyCountOnMap ++;
-                JSONObject item = new JSONObject();
-                item.put("X", ((Key) object).getCell().getX());
-                item.put("Y", ((Key) object).getCell().getY());
-                keys.put("Key" + keyCountOnMap, item);
-                items.put("Keys", keys);
-            } else if (object instanceof Helmet){
-                JSONObject item = new JSONObject();
-                item.put("X", ((Helmet) object).getCell().getX());
-                item.put("Y", ((Helmet) object).getCell().getY());
-                helmets.put("Helmet", item);
-                items.put("Helmets", helmets);
-            } else if (object instanceof Crown){
-                JSONObject item = new JSONObject();
-                item.put("X", ((Crown) object).getCell().getX());
-                item.put("Y", ((Crown) object).getCell().getY());
-                crowns.put("Crown", item);
-                items.put("Crowns", crowns);
-            } else if (object instanceof Sword){
-                JSONObject item = new JSONObject();
-                item.put("X", ((Sword) object).getCell().getX());
-                item.put("Y", ((Sword) object).getCell().getY());
-                swords.put("Sword", item);
-                items.put("Swords", swords);
-            } else if (object instanceof Sword1){
-                JSONObject item = new JSONObject();
-                item.put("X", ((Sword1) object).getCell().getX());
-                item.put("Y", ((Sword1) object).getCell().getY());
-                swords1.put("Sword1", item);
-                items.put("Swords1", swords1);
+            if (object instanceof Player){
+                player = getPlayerJSONObject((Player) object);
+            }
+
+            if ((object instanceof Actor) && !(object instanceof Player)){
+                JSONObject actor = getActorJSONObject((Actor) object);
+                actorsList.add(actor);
+            }
+
+            if (object instanceof Item){
+                JSONObject item = getItemJSONObject((Item) object);
+                itemsList.add(item);
             }
         }
 
-        if (!gosts.isEmpty()){
-            actors.put("gosts", gosts);
+        gameSave.add(player);
+        if (!actorsList.isEmpty()){
+            gameSave.add(actorsList);
         }
-        if (!goblins.isEmpty()){
-            actors.put("goblins", goblins);
+        if (!itemsList.isEmpty()){
+            gameSave.add(itemsList);
         }
-        if (!monsters.isEmpty()){
-            actors.put("monsters", monsters);
-        }
-        if (!skeletons.isEmpty()){
-            actors.put("skeletons", skeletons);
+        gameSave.add(mapLink);
+
+        return gameSave;
+    }
+
+    private JSONObject getActorJSONObject(Actor instanceOfActor){
+        JSONObject actor = new JSONObject();
+
+        actor.put("X", instanceOfActor.getCell().getX());
+        actor.put("Y", instanceOfActor.getCell().getY());
+        actor.put("HP", instanceOfActor.getHealth());
+        actor.put("Actor Type", instanceOfActor.getClass().getSimpleName());
+
+        return actor;
+    }
+
+    private JSONObject getItemJSONObject(Item instanceOfItem){
+        JSONObject item = new JSONObject();
+
+        item.put("X", instanceOfItem.getCell().getX());
+        item.put("Y", instanceOfItem.getCell().getY());
+        item.put("Item Type", instanceOfItem.getClass().getSimpleName());
+
+        return item;
+    }
+
+
+    private JSONObject getPlayerJSONObject(Player instanceOfPlayer){
+        JSONObject player = new JSONObject();
+        JSONArray backPack = new JSONArray();
+
+        player.put("X", instanceOfPlayer.getCell().getX());
+        player.put("Y", instanceOfPlayer.getCell().getY());
+        player.put("HP", instanceOfPlayer.getHealth());
+        player.put("Attack", instanceOfPlayer.getAttackPower());
+        player.put("Shield", instanceOfPlayer.getShield());
+        player.put("Player", instanceOfPlayer.getTileName());
+
+        for (Item item : instanceOfPlayer.backpack.getBackpackContent()){
+            backPack.add(item.getClass().getSimpleName());
         }
 
-        savedGame.put("Actors", actors);
-        savedGame.put("Items", items);
-        savedGame.put("Map", "mapLink");
+        player.put("BackPack", backPack);
 
+        return player;
+    }
 
+    private JSONObject getMapLinkJSONObject(){
+        JSONObject mapLink = new JSONObject();
 
-        //Write JSON file
-        try (FileWriter file = new FileWriter("saved_game.json")) {
-            //We can write any JSONArray or JSONObject instance to the file
-            file.write(savedGame.toJSONString());
+        mapLink.put("Map", "some Map Link");
+
+        return mapLink;
+    }
+
+    private void writeToFile(String fileName){
+        try (FileWriter file = new FileWriter(fileName)) {
+
+            file.write(this.getSavedGame().toJSONString());
             file.flush();
 
         } catch (IOException e) {
