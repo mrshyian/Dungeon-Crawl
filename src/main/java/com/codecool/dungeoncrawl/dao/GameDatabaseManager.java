@@ -20,6 +20,16 @@ public class GameDatabaseManager {
         playerDao.add(model);
     }
 
+    public PlayerModel getPlayer(String userName){
+        return playerDao.get(userName);
+    }
+
+
+    public void updatePlayer(Player player){
+        PlayerModel model = new PlayerModel(player);
+        playerDao.update(model);
+    }
+
     private DataSource connect() throws SQLException {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
         String dbName = System.getenv("PSQL_DB_NAME");
@@ -37,8 +47,5 @@ public class GameDatabaseManager {
         return dataSource;
     }
 
-    public void con() throws SQLException {
-        connect();
-    }
 }
 

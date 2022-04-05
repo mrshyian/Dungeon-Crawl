@@ -214,4 +214,6 @@ public class Player extends Actor {
     public String getName() {
         return name;
     }
+
+
 }

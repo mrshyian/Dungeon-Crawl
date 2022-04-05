@@ -7,6 +7,8 @@ import java.util.List;
 public interface PlayerDao {
     void add(PlayerModel player);
     void update(PlayerModel player);
-    PlayerModel get(int id);
+
+    PlayerModel get(String userName);
+
     List<PlayerModel> getAll();
 }
