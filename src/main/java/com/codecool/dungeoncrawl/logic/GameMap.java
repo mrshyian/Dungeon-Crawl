@@ -5,10 +5,9 @@
 
 package com.codecool.dungeoncrawl.logic;
 
-import com.codecool.dungeoncrawl.logic.actors.Goblin;
-import com.codecool.dungeoncrawl.logic.actors.Ghost;
-import com.codecool.dungeoncrawl.logic.actors.Monster;
-import com.codecool.dungeoncrawl.logic.actors.Player;
+import com.codecool.dungeoncrawl.logic.actors.*;
+import com.codecool.dungeoncrawl.logic.items.Door;
+import com.codecool.dungeoncrawl.logic.items.Item;
 
 import java.util.ArrayList;
 
@@ -20,6 +19,9 @@ public class GameMap {
     private ArrayList<Goblin> goblins = new ArrayList<>();
     private ArrayList<Ghost> ghosts = new ArrayList<>();
     private ArrayList<Monster> monsters = new ArrayList<>();
+    private ArrayList<Skeleton> skeletons = new ArrayList<>();
+    private ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<Door> doors = new ArrayList<>();
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
@@ -65,6 +67,18 @@ public class GameMap {
         monsters.add(monster);
     }
 
+    public void setSkeletonInitial(Skeleton skeleton){
+        skeletons.add(skeleton);
+    }
+
+    public void setDoorInitial(Door door){
+        doors.add(door);
+    }
+
+    public void setItemInitial(Item item){
+        items.add(item);
+    }
+
     public int getWidth() {
         return this.width;
     }
@@ -85,6 +99,18 @@ public class GameMap {
         return monsters;
     }
 
+    public ArrayList<Skeleton> getSkeletons() {
+        return skeletons;
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public ArrayList<Door> getDoors() {
+        return doors;
+    }
+
     public void removeNPC(Drawable npc) {
         if (npc instanceof Goblin){
             goblins.remove(npc);
@@ -96,6 +122,10 @@ public class GameMap {
 
         if (npc instanceof Monster){
             monsters.remove(npc);
+        }
+
+        if (npc instanceof Skeleton){
+            skeletons.remove(npc);
         }
     }
 }
