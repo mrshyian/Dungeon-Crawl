@@ -167,10 +167,11 @@ public class MapLoader {
                             break;
                         case 'C':
                             cell.setType(CellType.FLOOR);
-                            new Cheese(cell, 5);
+                            map.setItemInitial(new Cheese(cell, 5));
                             break;
                         case 'D':
                             cell.setType(CellType.DOORCLOSE);
+                            map.setDoorInitial(new Door(cell));
                             break;
                         case 'O':
                             cell.setType(CellType.OAKS);
@@ -183,11 +184,11 @@ public class MapLoader {
                             break;
                         case 'S':
                             cell.setType(CellType.FLOOR);
-                            new Sword(cell, 10);
+                            map.setItemInitial(new Sword(cell, 10));
                             break;
                         case 'b':
                             cell.setType(CellType.FLOOR);
-                            new Sword1(cell, 8);
+                            map.setItemInitial(new Sword1(cell, 8));
                             break;
                         case 'd':
                             cell.setType(CellType.DOOROPEN);
@@ -197,18 +198,18 @@ public class MapLoader {
                             break;
                         case 'k':
                             cell.setType(CellType.FLOOR);
-                            new Key(cell, 0);
+                            map.setItemInitial(new Key(cell, 0));
                             break;
                         case 'q':
                             cell.setType(CellType.FLOOR);
-                            new Helmet(cell, 5);
+                            map.setItemInitial(new Helmet(cell, 5));
                             break;
                         case 'r':
                             cell.setType(CellType.RIVERBODY);
                             break;
                         case 's':
                             cell.setType(CellType.FLOOR);
-                            new Skeleton(cell);
+                            map.setSkeletonInitial(new Skeleton(cell));
                             break;
                         case 't':
                             cell.setType(CellType.STAIRS);
