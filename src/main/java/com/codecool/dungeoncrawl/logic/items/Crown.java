@@ -4,8 +4,8 @@ import com.codecool.dungeoncrawl.logic.Cell;
 
 public class Crown extends Item{
 
-    public Crown(Cell cell, int price) {
-        super(cell, price);
+    public Crown(Cell cell) {
+        super(cell);
         this.setDescription("What happens to the hole when the crown is gone?");
     }
 

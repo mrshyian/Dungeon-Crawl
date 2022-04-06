@@ -19,44 +19,48 @@ public class JSONsave {
     public void saveToJSON(){
 
         //--------------------TEST---------------------------
-        ArrayList<Object> allObjects = new ArrayList<>();
-        Cell cell = new Cell(3,4);
+//        ArrayList<Object> allObjects = new ArrayList<>();
+//        Cell cell = new Cell(3,4);
+//
+//        Item crown = new Crown(cell);
+//        Item cheese = new Cheese(cell);
+//        Item sword = new Sword(cell);
+//        Item sword1 = new Sword1(cell);
+//        Item key = new Key(cell);
+//        Item helmet = new Helmet(cell);
+//
+//
+//
+//        Player władek = new Player(cell, "Władek");
+//        władek.backpack.addItemToBackPackDirecly(crown);
+//        władek.backpack.addItemToBackPackDirecly(cheese);
+//        władek.backpack.addItemToBackPackDirecly(cheese);
+//        władek.backpack.addItemToBackPackDirecly(sword);
+//        władek.backpack.addItemToBackPackDirecly(sword1);
+//        władek.backpack.addItemToBackPackDirecly(key);
+//        władek.backpack.addItemToBackPackDirecly(helmet);
+//
+//
+//        allObjects.add(new Ghost(cell));
+//        allObjects.add(new Ghost(cell));
+//        allObjects.add(new Goblin(cell));
+//        allObjects.add(new Goblin(cell));
+//        allObjects.add(new Monster(cell));
+//        allObjects.add(new Skeleton(cell));
+//        allObjects.add(new Skeleton(cell));
+//        allObjects.add(new Skeleton(cell));
+//        allObjects.add(new Cheese(cell));
+//        allObjects.add(new Cheese(cell));
+//        allObjects.add(new Helmet(cell));
+//        allObjects.add(new Sword(cell));
+//        allObjects.add(new Sword1(cell));
+//        allObjects.add(new Crown(cell));
+//        allObjects.add(new Key(cell));
+//        allObjects.add(władek);
 
-        Item crown = new Crown(cell, 100);
-        Item cheese = new Cheese(cell, 100);
-        Item sword = new Sword(cell, 100);
-        Item sword1 = new Sword1(cell, 100);
-        Item key = new Key(cell, 100);
-        Item helmet = new Helmet(cell, 100);
-
-
-
-        Player władek = new Player(cell, "Władek");
-        władek.backpack.addItemToBackPackDirecly(crown);
-        władek.backpack.addItemToBackPackDirecly(cheese);
-        władek.backpack.addItemToBackPackDirecly(cheese);
-        władek.backpack.addItemToBackPackDirecly(sword);
-        władek.backpack.addItemToBackPackDirecly(sword1);
-        władek.backpack.addItemToBackPackDirecly(key);
-        władek.backpack.addItemToBackPackDirecly(helmet);
-
-
-        allObjects.add(new Ghost(cell));
-        allObjects.add(new Ghost(cell));
-        allObjects.add(new Goblin(cell));
-        allObjects.add(new Goblin(cell));
-        allObjects.add(new Monster(cell));
-        allObjects.add(new Skeleton(cell));
-        allObjects.add(new Skeleton(cell));
-        allObjects.add(new Skeleton(cell));
-        allObjects.add(new Cheese(cell, 100));
-        allObjects.add(new Cheese(cell, 100));
-        allObjects.add(new Helmet(cell, 100));
-        allObjects.add(new Sword(cell, 100));
-        allObjects.add(new Sword1(cell, 100));
-        allObjects.add(new Crown(cell, 100));
-        allObjects.add(new Key(cell, 100));
-        allObjects.add(władek);
+        JSONextract lastSaveTest = new JSONextract();
+        lastSaveTest.extractObjectsFromJSON("savedGame.json");
+        ArrayList<Object> allObjects = JSONextract.getAllObjects();
         //-------------------------KONIEC-TESTU-----------------------
 
         this.savedGame = getJSONifiedGameData(allObjects);
@@ -106,7 +110,7 @@ public class JSONsave {
         actor.put("X", instanceOfActor.getCell().getX());
         actor.put("Y", instanceOfActor.getCell().getY());
         actor.put("HP", instanceOfActor.getHealth());
-        actor.put("Actor Type", instanceOfActor.getClass().getSimpleName());
+        actor.put("Actor Type", instanceOfActor.getClass().getName());
 
         return actor;
     }

@@ -21,6 +21,7 @@ public class Ghost extends Actor{
         createMoves();
     }
 
+
     @Override
     public void move(int dx, int dy, Stage primaryStage) {
         Cell nextCell = this.getCell().getNeighbor(dx, dy);

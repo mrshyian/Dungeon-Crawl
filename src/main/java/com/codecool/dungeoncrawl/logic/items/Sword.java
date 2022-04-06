@@ -4,8 +4,8 @@ import com.codecool.dungeoncrawl.logic.Cell;
 
 public class Sword extends Item{
 
-    public Sword(Cell cell, int price) {
-        super(cell, price);
+    public Sword(Cell cell) {
+        super(cell);
         this.setAttackUpper(1);
         this.setDescription("Never give a sword to a man who can't dance! So... Your bad.");
     }

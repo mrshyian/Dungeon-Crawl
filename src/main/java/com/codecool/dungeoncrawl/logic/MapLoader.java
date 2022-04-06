@@ -60,7 +60,7 @@ public class MapLoader {
                         case '/':
                         case '0':
                             cell.setType(CellType.FLOOR);
-                            new Crown(cell, 100);
+                            new Crown(cell);
                             break;
                         case '1':
                             cell.setType(CellType.CASTLE1);
@@ -168,7 +168,7 @@ public class MapLoader {
                             break;
                         case 'C':
                             cell.setType(CellType.FLOOR);
-                            new Cheese(cell, 5);
+                            new Cheese(cell);
                             break;
                         case 'D':
                             cell.setType(CellType.DOORCLOSE);
@@ -184,11 +184,11 @@ public class MapLoader {
                             break;
                         case 'S':
                             cell.setType(CellType.FLOOR);
-                            new Sword(cell, 10);
+                            new Sword(cell);
                             break;
                         case 'b':
                             cell.setType(CellType.FLOOR);
-                            new Sword1(cell, 8);
+                            new Sword1(cell);
                             break;
                         case 'd':
                             cell.setType(CellType.DOOROPEN);
@@ -198,11 +198,11 @@ public class MapLoader {
                             break;
                         case 'k':
                             cell.setType(CellType.FLOOR);
-                            new Key(cell, 0);
+                            new Key(cell);
                             break;
                         case 'q':
                             cell.setType(CellType.FLOOR);
-                            new Helmet(cell, 5);
+                            new Helmet(cell);
                             break;
                         case 'r':
                             cell.setType(CellType.RIVERBODY);

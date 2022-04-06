@@ -2,7 +2,6 @@ package com.codecool.dungeoncrawl.dao;
 
 import com.codecool.dungeoncrawl.logic.*;
 import com.codecool.dungeoncrawl.logic.actors.Actor;
-import com.codecool.dungeoncrawl.logic.actors.Ghost;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.items.Item;
 import org.json.simple.JSONArray;
@@ -20,12 +19,6 @@ import java.util.Set;
 
 public class JSONextract {
     private static ArrayList<Object> allObjects = new ArrayList<>();
-
-    public void printTest(){
-        for (Object object: allObjects) {
-            System.out.println(object.toString());
-        }
-    }
 
     public static ArrayList<Object> getAllObjects() { return allObjects; }
 
@@ -95,7 +88,7 @@ public class JSONextract {
 
     }
 
-    private static Player createPlayer(JSONObject object){
+    private static Player createPlayer(JSONObject object) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         String playerTileName = (String) object.get("Player");
 
         int playerPositionX = (int) (long) object.get("X");
@@ -113,7 +106,26 @@ public class JSONextract {
         player.setAttackPower(playerAttack);
         player.setShield(playerShield);
 
+        BackPack playerBackPack = createPlayerBackPack(player, object);
+        player.backpack = playerBackPack;
+
         return player;
+    }
+
+    private static BackPack createPlayerBackPack(Player owner, JSONObject backPackContent) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        BackPack playerBackPack = new BackPack(owner);
+        for (Object itemType : (JSONArray) backPackContent.get("BackPack")){
+
+            GameMap itemGameMap = new GameMap(20, 20, CellType.FLOOR); // ToDo: ????
+            Cell itemCell = new Cell(itemGameMap, 0, 0, CellType.FLOOR);
+            Class<?> itemClass = Class.forName((String) itemType);
+
+            Constructor<?> itemClassConstructor = itemClass.getConstructor(itemCell.getClass());
+            Object item = itemClassConstructor.newInstance(itemCell);
+
+            playerBackPack.addItemToBackPackDirecly((Item) item);
+        }
+        return playerBackPack;
     }
 
     private static void addToAllObjectsList(Object object){
@@ -126,11 +138,11 @@ public class JSONextract {
         int itemPositionY = (int) (long) object.get("Y");
 
         Class<?> itemClass = Class.forName(itemType);
-        Constructor<?> itemClassConstructor = itemClass.getConstructor(String.class);
 
         GameMap itemGameMap = new GameMap(20, 20, CellType.FLOOR); // ToDo: ????
         Cell itemCell = new Cell(itemGameMap, itemPositionX, itemPositionY, CellType.FLOOR);
 
+        Constructor<?> itemClassConstructor = itemClass.getConstructor(itemCell.getClass());
         Object item = itemClassConstructor.newInstance(itemCell);
 
         return (Item) item;
@@ -143,13 +155,12 @@ public class JSONextract {
         int actorHP = (int) (long) object.get("HP");
 
         Class<?> actorClass = Class.forName(actorType);
-        Constructor<?> actorClassConstructor = actorClass.getConstructor(String.class);
 
         GameMap actorGameMap = new GameMap(20, 20, CellType.FLOOR); // ToDo: ????
         Cell actorCell = new Cell(actorGameMap, actorPositionX, actorPositionY, CellType.FLOOR);
 
+        Constructor<?> actorClassConstructor = actorClass.getConstructor(actorCell.getClass());
         Object actor = actorClassConstructor.newInstance(actorCell);
-        ((Actor) actor).setCellIntoEmptyInstance(actorCell);
         ((Actor) actor).setHealth(actorHP);
 
         return (Actor) actor;

@@ -11,9 +11,8 @@ public abstract class Item implements Drawable {
     private int shieldUpper = 0;
     private String description = "Item";
 
-    public Item(Cell cell, int price) {
+    public Item(Cell cell) {
         this.cell = cell;
-        this.price = price;
         this.cell.setCellContent(this);
     }
 

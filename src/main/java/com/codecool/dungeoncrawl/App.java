@@ -9,6 +9,9 @@ package com.codecool.dungeoncrawl;
 import com.codecool.dungeoncrawl.dao.JSONextract;
 import com.codecool.dungeoncrawl.dao.JSONsave;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class App {
     public App() {
     }
@@ -18,36 +21,8 @@ public class App {
         savedTest.saveToJSON();
         JSONextract lastSaveTest = new JSONextract();
         lastSaveTest.extractObjectsFromJSON("savedGame.json");
-        lastSaveTest.printTest();
+        ArrayList<Object> allObjects = JSONextract.getAllObjects();
 
         PlayerInput.start(args);
     }
 }
-//
-//[{"Player":"naked player",
-//        "BackPack":["Crown","Cheese","Cheese","Sword","Sword1","Key","Helmet"],
-//        "Shield":1,
-//        "X":3,
-//        "HP":5,
-//        "Y":4,
-//        "Attack":1},
-// [
-//         {"X":3,"HP":2,"Y":4,"Actor Type":"Ghost"},
-//        {"X":3,"HP":2,"Y":4,"Actor Type":"Ghost"},
-//        {"X":3,"HP":1,"Y":4,"Actor Type":"Goblin"},
-//        {"X":3,"HP":1,"Y":4,"Actor Type":"Goblin"},
-//        {"X":3,"HP":3,"Y":4,"Actor Type":"Monster"},
-//        {"X":3,"HP":1,"Y":4,"Actor Type":"Skeleton"},
-//        {"X":3,"HP":1,"Y":4,"Actor Type":"Skeleton"},
-//        {"X":3,"HP":1,"Y":4,"Actor Type":"Skeleton"}
-//],
-//[
-//        {"X":3,"Y":4,"Item Type":"Cheese"},
-//        {"X":3,"Y":4,"Item Type":"Cheese"},
-//        {"X":3,"Y":4,"Item Type":"Helmet"},
-//        {"X":3,"Y":4,"Item Type":"Sword"},
-//        {"X":3,"Y":4,"Item Type":"Sword1"},
-//        {"X":3,"Y":4,"Item Type":"Crown"},
-//        {"X":3,"Y":4,"Item Type":"Key"}],
-//        {"Map":"some Map Link"}
-//]

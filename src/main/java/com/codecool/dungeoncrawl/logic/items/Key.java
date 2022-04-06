@@ -4,8 +4,8 @@ import com.codecool.dungeoncrawl.logic.Cell;
 
 public class Key extends Item{
 
-    public Key(Cell cell, int price) {
-        super(cell, price);
+    public Key(Cell cell) {
+        super(cell);
         this.setDescription("Hm... Maybe I should keep it for a moment...");
     }
 
