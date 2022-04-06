@@ -88,6 +88,7 @@ public class PlayerDaoJdbc implements PlayerDao {
 
         PlayerModel playerModel = new PlayerModel(name, playerView, x, y, health, power, shield);
         return playerModel;
+
     }
 
     @Override
