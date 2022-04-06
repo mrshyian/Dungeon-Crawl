@@ -4,6 +4,12 @@
 //
 
 package com.codecool.dungeoncrawl;
+import com.codecool.dungeoncrawl.dao.GameDatabaseManager;
+import com.codecool.dungeoncrawl.dao.PlayerDaoJdbc;
+import com.codecool.dungeoncrawl.model.PlayerModel;
+
+import javax.sql.DataSource;
+import java.sql.SQLException;
 
 
 public class App {
