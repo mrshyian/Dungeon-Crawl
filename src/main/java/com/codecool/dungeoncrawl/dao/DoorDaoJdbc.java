@@ -33,7 +33,16 @@ public class DoorDaoJdbc implements DoorDao {
 
     @Override
     public void update(DoorModel door) {
-
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "UPDATE door SET x = ?, y = ?, is_open = ? WHERE id = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, door.getX());
+            statement.setInt(2, door.getY());
+            statement.setBoolean(3, door.isOpen());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
