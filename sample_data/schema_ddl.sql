@@ -1,19 +1,114 @@
-DROP TABLE IF EXISTS public.game_state;
-CREATE TABLE public.game_state (
-    id serial NOT NULL PRIMARY KEY,
-    current_map text NOT NULL,
-    saved_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    player_id integer NOT NULL
+DROP TABLE IF EXISTS public.game_state CASCADE;
+CREATE TABLE public.game_state
+(
+    id          serial                                                NOT NULL PRIMARY KEY,
+    current_map text                                                  NOT NULL,
+    saved_at    timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    player_name text                                                  NOT NULL UNIQUE
 );
 
-DROP TABLE IF EXISTS public.player;
-CREATE TABLE public.player (
-    id serial NOT NULL PRIMARY KEY,
-    player_name text NOT NULL,
-    hp integer NOT NULL,
-    x integer NOT NULL,
-    y integer NOT NULL
+DROP TABLE IF EXISTS public.opponent CASCADE;
+CREATE TABLE public.opponent
+(
+    id     serial  NOT NULL PRIMARY KEY,
+    x      integer NOT NULL,
+    y      integer NOT NULL,
+    name   text    NOT NULL,
+    health integer NOT NULL,
+    power  integer NOT NULL,
+    shield integer NOT NULL
+);
+
+DROP TABLE IF EXISTS public.item CASCADE;
+CREATE TABLE public.item
+(
+    id     serial  NOT NULL PRIMARY KEY,
+    x      integer NOT NULL,
+    y      integer NOT NULL,
+    name   text    NOT NULL,
+    health integer NOT NULL,
+    power  integer NOT NULL,
+    shield integer NOT NULL
+);
+
+DROP TABLE IF EXISTS public.player CASCADE;
+CREATE TABLE public.player
+(
+    id         serial  NOT NULL,
+    name       text    NOT NULL PRIMARY KEY UNIQUE,
+    playerView text    NOT NULL,
+    x          integer NOT NULL,
+    y          integer NOT NULL,
+    health     integer NOT NULL,
+    power      integer NOT NULL,
+    shield     integer NOT NULL
+);
+
+DROP TABLE IF EXISTS public.door CASCADE;
+CREATE TABLE public.door
+(
+    id      serial  NOT NULL PRIMARY KEY,
+    x       integer NOT NULL,
+    y       integer NOT NULL,
+    is_open boolean NOT NULL
+);
+
+
+DROP TABLE IF EXISTS public.game_opponents CASCADE;
+CREATE TABLE public.game_opponents
+(
+    id          serial  NOT NULL PRIMARY KEY,
+    game_id     integer NOT NULL,
+    opponent_id integer NOT NULL
+);
+
+DROP TABLE IF EXISTS public.game_items CASCADE;
+CREATE TABLE public.game_items
+(
+    id      serial  NOT NULL PRIMARY KEY,
+    game_id integer NOT NULL,
+    item_id integer NOT NULL
+);
+
+DROP TABLE IF EXISTS public.player_backpack CASCADE;
+CREATE TABLE public.player_backpack
+(
+    id          serial  NOT NULL PRIMARY KEY,
+    player_name text    NOT NULL,
+    item_id     integer NOT NULL
+);
+
+DROP TABLE IF EXISTS public.game_doors CASCADE;
+CREATE TABLE public.game_doors
+(
+    id      serial  NOT NULL PRIMARY KEY,
+    game_id int     NOT NULL,
+    door_id integer NOT NULL
 );
 
 ALTER TABLE ONLY public.game_state
-    ADD CONSTRAINT fk_player_id FOREIGN KEY (player_id) REFERENCES public.player(id);
+    ADD CONSTRAINT fk_player_id FOREIGN KEY (player_name) REFERENCES public.player (name);
+
+ALTER TABLE ONLY public.game_opponents
+    ADD CONSTRAINT fk_opponent_id FOREIGN KEY (opponent_id) REFERENCES public.opponent (id);
+
+ALTER TABLE ONLY public.game_doors
+    ADD CONSTRAINT fk_door_id FOREIGN KEY (door_id) REFERENCES public.door (id);
+
+ALTER TABLE ONLY public.game_items
+    ADD CONSTRAINT fk_item_id FOREIGN KEY (item_id) REFERENCES public.item (id);
+
+ALTER TABLE ONLY public.player_backpack
+    ADD CONSTRAINT fk_player_name FOREIGN KEY (player_name) REFERENCES public.player (name);
+
+ALTER TABLE ONLY public.player_backpack
+    ADD CONSTRAINT fk_player_item_id FOREIGN KEY (item_id) REFERENCES public.item (id);
+
+ALTER TABLE ONLY public.game_items
+    ADD CONSTRAINT fk_game_items_id FOREIGN KEY (game_id) REFERENCES public.game_state (id);
+
+ALTER TABLE ONLY public.game_opponents
+    ADD CONSTRAINT fk_game_opponents_id FOREIGN KEY (game_id) REFERENCES public.game_state (id);
+
+ALTER TABLE ONLY public.game_doors
+    ADD CONSTRAINT fk_game_doors_id FOREIGN KEY (game_id) REFERENCES public.game_state (id);
