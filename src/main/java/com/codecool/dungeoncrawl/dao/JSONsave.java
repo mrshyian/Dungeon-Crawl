@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.dao;
 
 import com.codecool.dungeoncrawl.logic.Cell;
+import com.codecool.dungeoncrawl.logic.MapLoader;
 import com.codecool.dungeoncrawl.logic.actors.*;
 import com.codecool.dungeoncrawl.logic.items.*;
 import org.json.simple.JSONArray;
@@ -149,7 +150,7 @@ public class JSONsave {
     private JSONObject getMapLinkJSONObject(){
         JSONObject mapLink = new JSONObject();
 
-        mapLink.put("Map", "some Map Link");
+        mapLink.put("Map", MapLoader.flag);
 
         return mapLink;
     }

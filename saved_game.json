@@ -1,1 +1,110 @@
-{"Actors":{"Player":{"Shield":1,"X":3,"HP":5,"Y":4,"backPack":{"Crown":true,"Helmet":true,"Sword":true,"Sword1":true,"Cheese":2,"Key":true},"Attack":1},"skeletons":{"Skeleton1":{"X":3,"HP":1,"Y":4},"Skeleton2":{"X":3,"HP":1,"Y":4},"Skeleton3":{"X":3,"HP":1,"Y":4}},"gosts":{"Ghost2":{"X":3,"HP":2,"Y":4},"Ghost1":{"X":3,"HP":2,"Y":4}},"monsters":{"Monster1":{"X":3,"HP":3,"Y":4}},"goblins":{"Goblin1":{"X":3,"HP":1,"Y":4},"Goblin2":{"X":3,"HP":1,"Y":4}}},"Items":{"Crowns":{"Crown":{"X":3,"Y":4}},"Cheeses":{"Cheese1":{"X":3,"Y":4},"Cheese2":{"X":3,"Y":4}},"Swords":{"Sword":{"X":3,"Y":4}},"Keys":{"Key1":{"X":3,"Y":4}},"Helmets":{"Helmet":{"X":3,"Y":4}},"Swords1":{"Sword1":{"X":3,"Y":4}}},"Map":"mapLink"}
+{
+  "Actors": {
+    "Player": {
+      "Shield": 1,
+      "X": 3,
+      "HP": 5,
+      "Y": 4,
+      "backPack": {
+        "Crown": true,
+        "Helmet": true,
+        "Sword": true,
+        "Sword1": true,
+        "Cheese": 2,
+        "Key": true
+      },
+      "Attack": 1
+    },
+    "skeletons": {
+      "Skeleton1": {
+        "X": 3,
+        "HP": 1,
+        "Y": 4
+      },
+      "Skeleton2": {
+        "X": 3,
+        "HP": 1,
+        "Y": 4
+      },
+      "Skeleton3": {
+        "X": 3,
+        "HP": 1,
+        "Y": 4
+      }
+    },
+    "gosts": {
+      "Ghost2": {
+        "X": 3,
+        "HP": 2,
+        "Y": 4
+      },
+      "Ghost1": {
+        "X": 3,
+        "HP": 2,
+        "Y": 4
+      }
+    },
+    "monsters": {
+      "Monster1": {
+        "X": 3,
+        "HP": 3,
+        "Y": 4
+      }
+    },
+    "goblins": {
+      "Goblin1": {
+        "X": 3,
+        "HP": 1,
+        "Y": 4
+      },
+      "Goblin2": {
+        "X": 3,
+        "HP": 1,
+        "Y": 4
+      }
+    }
+  },
+  "Items": {
+    "Crowns": {
+      "Crown": {
+        "X": 3,
+        "Y": 4
+      }
+    },
+    "Cheeses": {
+      "Cheese1": {
+        "X": 3,
+        "Y": 4
+      },
+      "Cheese2": {
+        "X": 3,
+        "Y": 4
+      }
+    },
+    "Swords": {
+      "Sword": {
+        "X": 3,
+        "Y": 4
+      }
+    },
+    "Keys": {
+      "Key1": {
+        "X": 3,
+        "Y": 4
+      }
+    },
+    "Helmets": {
+      "Helmet": {
+        "X": 3,
+        "Y": 4
+      }
+    },
+    "Swords1": {
+      "Sword1": {
+        "X": 3,
+        "Y": 4
+      }
+    }
+  },
+  "Map": "mapLink"
+}
