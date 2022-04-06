@@ -118,12 +118,11 @@ public class JSONextract {
 
             GameMap itemGameMap = new GameMap(20, 20, CellType.FLOOR); // ToDo: ????
             Cell itemCell = new Cell(itemGameMap, 0, 0, CellType.FLOOR);
-            Class<?> itemClass = Class.forName((String) itemType);
 
-            Constructor<?> itemClassConstructor = itemClass.getConstructor(itemCell.getClass());
-            Object item = itemClassConstructor.newInstance(itemCell);
+            Item item = (Item) createInstance((String) itemType);
+            item.setCell(itemCell);
 
-            playerBackPack.addItemToBackPackDirecly((Item) item);
+            playerBackPack.addItemToBackPackDirecly(item);
         }
         return playerBackPack;
     }
@@ -137,15 +136,13 @@ public class JSONextract {
         int itemPositionX = (int) (long) object.get("X");
         int itemPositionY = (int) (long) object.get("Y");
 
-        Class<?> itemClass = Class.forName(itemType);
-
         GameMap itemGameMap = new GameMap(20, 20, CellType.FLOOR); // ToDo: ????
         Cell itemCell = new Cell(itemGameMap, itemPositionX, itemPositionY, CellType.FLOOR);
 
-        Constructor<?> itemClassConstructor = itemClass.getConstructor(itemCell.getClass());
-        Object item = itemClassConstructor.newInstance(itemCell);
+        Item item = (Item) createInstance(itemType);
+        item.setCell(itemCell);
 
-        return (Item) item;
+        return item;
     }
 
     private static Actor createActor(JSONObject object) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
@@ -154,16 +151,25 @@ public class JSONextract {
         int actorPositionY = (int) (long) object.get("Y");
         int actorHP = (int) (long) object.get("HP");
 
-        Class<?> actorClass = Class.forName(actorType);
-
         GameMap actorGameMap = new GameMap(20, 20, CellType.FLOOR); // ToDo: ????
         Cell actorCell = new Cell(actorGameMap, actorPositionX, actorPositionY, CellType.FLOOR);
 
-        Constructor<?> actorClassConstructor = actorClass.getConstructor(actorCell.getClass());
-        Object actor = actorClassConstructor.newInstance(actorCell);
-        ((Actor) actor).setHealth(actorHP);
+        Actor actor = (Actor) createInstance(actorType);
+        actor.setCell(actorCell);
+        actor.setHealth(actorHP);
 
-        return (Actor) actor;
+        return actor;
+    }
+
+    private static Drawable createInstance(String instanceClassName) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        GameMap drawableGameMap = new GameMap(20, 20, CellType.FLOOR); // ToDo: ????
+        Cell drawableCell = new Cell(drawableGameMap, 1, 1, CellType.FLOOR);
+
+        Class<?> drawableClass = Class.forName(instanceClassName);
+        Constructor<?> drawableClassConstructor = drawableClass.getConstructor(drawableCell.getClass());
+        Object drawableInstance = drawableClassConstructor.newInstance(drawableCell);
+
+        return (Drawable) drawableInstance;
     }
 
 
