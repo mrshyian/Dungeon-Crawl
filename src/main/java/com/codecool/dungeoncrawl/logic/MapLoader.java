@@ -150,16 +150,16 @@ public class MapLoader {
                         case '.':
                             cell.setType(CellType.FLOOR);
                             break;
-//                        case '@':
-//                            cell.setType(CellType.FLOOR);
-//                            if (flag == 1) {
-//                                player = new Player(cell, playerName);
-//                            } else {
-//                                cell.setCellContent(player);
-//                                player.setCell(cell);
-//                            }
-//                            map.setPlayer(player);
-//                            break;
+                        case '@':
+                            cell.setType(CellType.FLOOR);
+                            if (flag == 1) {
+                                player = new Player(cell, playerName);
+                            } else {
+                                cell.setCellContent(player);
+                                player.setCell(cell);
+                            }
+                            map.setPlayer(player);
+                            break;
                         case 'A':
                             cell.setType(CellType.ARROW);
                             break;
@@ -228,26 +228,26 @@ public class MapLoader {
 
 
         //--------zaladowanie Actors z bazy-------------------
-        ArrayList<Actor> actorsFromJSON = new ArrayList<>(); //przykładowo
-        for (Actor actor : actorsFromJSON){
-            Cell cellForActor = map.getCell(actor.getX(), actor.getY());
-            cellForActor.setType(CellType.FLOOR);
-            cellForActor.setCellContent(actor);
-            actor.setCell(cellForActor);
-            if (actor instanceof Ghost){
-                map.setGhostInitial((Ghost) actor);
-            } else if (actor instanceof Monster){
-                map.setMonsterInitial((Monster) actor);
-            } else if (actor instanceof Goblin){
-                map.setGoblinInitial(new Goblin(cellForActor));
-            } else if (actor instanceof Player){
-                //--------zaladowanie Playera z bazy-------------------
-                ArrayList<Item> backpackFromJSON = new ArrayList<>(); //przykładowo
-                for (Item item : backpackFromJSON){
-                    ((Player) actor).backpack.addItemToBackPackDirecly(item);
-                }
-            }
-        }
+//        ArrayList<Actor> actorsFromJSON = new ArrayList<>(); //przykładowo
+//        for (Actor actor : actorsFromJSON){
+//            Cell cellForActor = map.getCell(actor.getX(), actor.getY());
+//            cellForActor.setType(CellType.FLOOR);
+//            cellForActor.setCellContent(actor);
+//            actor.setCell(cellForActor);
+//            if (actor instanceof Ghost){
+//                map.setGhostInitial((Ghost) actor);
+//            } else if (actor instanceof Monster){
+//                map.setMonsterInitial((Monster) actor);
+//            } else if (actor instanceof Goblin){
+//                map.setGoblinInitial(new Goblin(cellForActor));
+//            } else if (actor instanceof Player){
+//                //--------zaladowanie Playera z bazy-------------------
+//                ArrayList<Item> backpackFromJSON = new ArrayList<>(); //przykładowo
+//                for (Item item : backpackFromJSON){
+//                    ((Player) actor).backpack.addItemToBackPackDirecly(item);
+//                }
+//            }
+//        }
 
         return map;
     }
