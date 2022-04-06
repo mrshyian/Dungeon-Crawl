@@ -116,7 +116,7 @@ public class JSONsave {
 
         item.put("X", instanceOfItem.getCell().getX());
         item.put("Y", instanceOfItem.getCell().getY());
-        item.put("Item Type", instanceOfItem.getClass().getSimpleName());
+        item.put("Item Type", instanceOfItem.getClass().getName());
 
         return item;
     }
@@ -134,7 +134,7 @@ public class JSONsave {
         player.put("Player", instanceOfPlayer.getTileName());
 
         for (Item item : instanceOfPlayer.backpack.getBackpackContent()){
-            backPack.add(item.getClass().getSimpleName());
+            backPack.add(item.getClass().getName());
         }
 
         player.put("BackPack", backPack);

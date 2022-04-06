@@ -22,6 +22,8 @@ public abstract class Actor implements Drawable {
         this.cell.setCellContent(this);
     }
 
+    public Actor(){}
+
     public void move(int dx, int dy, Stage primaryStage) {}
 
     public int getHealth() {
@@ -30,7 +32,12 @@ public abstract class Actor implements Drawable {
 
     public Cell getCell() { return this.cell; }
 
-    public void setCell(Cell cell) { this.cell = cell; }
+    public void setCell(Cell cell) { this.cell = cell;}
+
+    public void setCellIntoEmptyInstance(Cell cell){
+        this.cell = cell;
+        this.cell.setCellContent(this);
+    }
 
     public int getX() {
         return this.cell.getX();
