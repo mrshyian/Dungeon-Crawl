@@ -5,6 +5,7 @@ import com.codecool.dungeoncrawl.model.GameItemsModel;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DoorDaoJdbc implements DoorDao {
@@ -66,6 +67,18 @@ public class DoorDaoJdbc implements DoorDao {
 
     @Override
     public List<DoorModel> getAll() {
-        return null;
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "SELECT x, y, is_open FROM door";
+            ResultSet result = conn.createStatement().executeQuery(sql);
+            List<DoorModel> doors = new ArrayList<>();
+            while (result.next()) {
+                DoorModel door = new DoorModel(result.getInt(1), result.getInt(2), result.getBoolean(3));
+                door.setId(result.getInt(1));
+                doors.add(door);
+            }
+            return doors;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error while reading all game items", e);
+        }
     }
 }
