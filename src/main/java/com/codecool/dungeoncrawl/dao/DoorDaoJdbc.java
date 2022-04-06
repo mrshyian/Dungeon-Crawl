@@ -1,6 +1,7 @@
 package com.codecool.dungeoncrawl.dao;
 
 import com.codecool.dungeoncrawl.model.DoorModel;
+import com.codecool.dungeoncrawl.model.GameItemsModel;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -47,7 +48,20 @@ public class DoorDaoJdbc implements DoorDao {
 
     @Override
     public DoorModel get(int id) {
-        return null;
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "SELECT x, y, is_open FROM door WHERE id = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet door = statement.executeQuery();
+            if (!door.next()) {
+                return null;
+            }
+            DoorModel doorModel = new DoorModel(door.getInt(1), door.getInt(2), door.getBoolean(3));
+            doorModel.setId(id);
+            return doorModel;
+        } catch (SQLException e) {
+            throw new RuntimeException("Error while reading game item id: " + id, e);
+        }
     }
 
     @Override
