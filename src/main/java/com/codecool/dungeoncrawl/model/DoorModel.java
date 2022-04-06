@@ -4,7 +4,7 @@ public class DoorModel extends BaseModel {
 
     private int x;
     private int y;
-    public boolean isOpen;
+    private boolean isOpen;
 
     public DoorModel(int x, int y, boolean isOpen) {
         this.x = x;
