@@ -70,6 +70,14 @@ public class PlayerDaoJdbc implements PlayerDao {
             return null;
         }
 
+        PlayerModel playerModel =dataSet(rs);
+        return playerModel;
+    } catch (SQLException e) {
+        throw new RuntimeException("Error while reading player id:" + userName, e);
+    }
+}
+
+    private PlayerModel dataSet(ResultSet rs) throws SQLException {
         String name = rs.getString(1);
         String playerView = rs.getString(2);
         int x = rs.getInt(3);
@@ -80,36 +88,24 @@ public class PlayerDaoJdbc implements PlayerDao {
 
         PlayerModel playerModel = new PlayerModel(name, playerView, x, y, health, power, shield);
         return playerModel;
-    } catch (SQLException e) {
-        throw new RuntimeException(e);
     }
-}
 
     @Override
     public List<PlayerModel> getAll() {
         try (Connection conn = dataSource.getConnection()) {
-            // FIRST STEP - read book_id, author_id and title
+
             String sql = "SELECT name, playerview, x, y, health, power, shield FROM player";
             ResultSet rs = conn.createStatement().executeQuery(sql);
 
             List<PlayerModel> result = new ArrayList<>();
             while (rs.next()) {
 
-                String playerName = rs.getString(1);
-                String playerView = rs.getString(2);
-                int x = rs.getInt(3);
-                int y = rs.getInt(4);
-                int hp = rs.getInt(5);
-                int power = rs.getInt(6);
-                int shield = rs.getInt(7);
-
-
-                PlayerModel playerModel = new PlayerModel(playerName, playerView, x, y, hp, power, shield);
+                PlayerModel playerModel = dataSet(rs);
                 result.add(playerModel);
             }
             return result;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error while reading all players", e);
         }
     }
 }
