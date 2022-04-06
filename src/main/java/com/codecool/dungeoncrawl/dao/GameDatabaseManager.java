@@ -1,24 +1,63 @@
 package com.codecool.dungeoncrawl.dao;
 
+import com.codecool.dungeoncrawl.logic.actors.Actor;
 import com.codecool.dungeoncrawl.logic.actors.Player;
+import com.codecool.dungeoncrawl.model.OpponentModel;
 import com.codecool.dungeoncrawl.model.PlayerModel;
 import org.postgresql.ds.PGSimpleDataSource;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.List;
 
 public class GameDatabaseManager {
     private PlayerDao playerDao;
+    private OpponentDao opponentDao;
 
     public void setup() throws SQLException {
         DataSource dataSource = connect();
         playerDao = new PlayerDaoJdbc(dataSource);
+        opponentDao = new OpponentDaoJdbc(dataSource);
     }
 
     public void savePlayer(Player player) {
         PlayerModel model = new PlayerModel(player);
         playerDao.add(model);
     }
+
+
+    public PlayerModel getPlayer(String userName){
+        return playerDao.get(userName);
+    }
+
+    public void updatePlayer(Player player){
+        PlayerModel model = new PlayerModel(player);
+        playerDao.update(model);
+    }
+
+    public List<PlayerModel> getAllPlayers(){
+        return playerDao.getAll();
+    }
+
+    public void saveOpponent(Actor opponent){
+        OpponentModel model = new OpponentModel(opponent);
+        opponentDao.add(model);
+    }
+
+    public OpponentModel getOpponent(int id){
+        return opponentDao.get(id);
+    }
+
+    public void updateOpponent(Actor opponent){
+        OpponentModel model = new OpponentModel(opponent);
+        opponentDao.update(model);
+    }
+
+    public List<OpponentModel> getAllOpponents(){
+        return opponentDao.getAll();
+    }
+
+
 
     private DataSource connect() throws SQLException {
         PGSimpleDataSource dataSource = new PGSimpleDataSource();
@@ -37,8 +76,5 @@ public class GameDatabaseManager {
         return dataSource;
     }
 
-    public void con() throws SQLException {
-        connect();
-    }
 }
 
