@@ -3,6 +3,7 @@ package com.codecool.dungeoncrawl.NoSQLDatabase;
 import com.codecool.dungeoncrawl.logic.*;
 import com.codecool.dungeoncrawl.logic.actors.Actor;
 import com.codecool.dungeoncrawl.logic.actors.Player;
+import com.codecool.dungeoncrawl.logic.items.Door;
 import com.codecool.dungeoncrawl.logic.items.Item;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -52,9 +53,7 @@ public class JSONextract {
                 e.printStackTrace();
             }
         });
-
     }
-
 
     private static JSONArray getJSONFileContent(String fileName){
         JSONParser jsonParser = new JSONParser();
@@ -62,7 +61,6 @@ public class JSONextract {
 
         try (FileReader reader = new FileReader(fileName)) {
             jsonFileContent = (JSONArray) jsonParser.parse(reader);
-//            System.out.println(jsonFileContent);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -83,7 +81,6 @@ public class JSONextract {
             }
 
             if (keys.contains("Map")){
-//                MapLoader.setFlag((int)(long) ((JSONObject) object).get("Map"));
                 Integer flagMap = ((int)(long) ((JSONObject) object).get("Map"));
                 addToAllObjectsList(flagMap);
                 currentFlagMap = flagMap;
@@ -101,6 +98,11 @@ public class JSONextract {
 
                 if (keys.contains("Item Type")){
                     Item item = createItem((JSONObject) drawableInstance);
+                    addToAllObjectsList(item);
+                }
+
+                if (keys.contains("Door Type")){
+                    Door item = createDoor((JSONObject) drawableInstance);
                     addToAllObjectsList(item);
                 }
             }
@@ -153,13 +155,29 @@ public class JSONextract {
         int itemPositionX = (int) (long) object.get("X");
         int itemPositionY = (int) (long) object.get("Y");
 
-        GameMap itemGameMap = new GameMap(20, 20, CellType.FLOOR); // ToDo: ????
+        GameMap itemGameMap = new GameMap(20, 20, CellType.FLOOR);
         Cell itemCell = new Cell(itemGameMap, itemPositionX, itemPositionY, CellType.FLOOR);
 
         Item item = (Item) createInstance(itemType);
         item.setCell(itemCell);
 
         return item;
+    }
+
+    private static Door createDoor(JSONObject object) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        String doorType = (String) object.get("Door Type");
+        int doorPositionX = (int) (long) object.get("X");
+        int doorPositionY = (int) (long) object.get("Y");
+        boolean isOpen = (boolean) object.get("isOpen");
+
+        GameMap doorGameMap = new GameMap(20, 20, CellType.FLOOR);
+        Cell doorCell = new Cell(doorGameMap, doorPositionX, doorPositionY, CellType.FLOOR);
+
+        Door door = (Door) createInstance(doorType);
+        door.setCell(doorCell);
+        door.setOpen(isOpen);
+
+        return door;
     }
 
     private static Actor createActor(JSONObject object) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
@@ -181,8 +199,6 @@ public class JSONextract {
     private static Drawable createInstance(String instanceClassName) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         GameMap drawableGameMap = new GameMap(20, 20, CellType.FLOOR);
         Cell drawableCell = new Cell(drawableGameMap, 1, 1, CellType.FLOOR);
-
-
 
         Class<?> drawableClass = Class.forName(instanceClassName);
         Constructor<?> drawableClassConstructor = drawableClass.getConstructor(drawableCell.getClass());

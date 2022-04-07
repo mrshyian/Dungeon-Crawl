@@ -25,5 +25,6 @@ public class JSONDatabaseManager {
         allObjects.addAll(GameMap.getMonsters());
         allObjects.addAll(GameMap.getItems());
         allObjects.addAll(GameMap.getSkeletons());
+        allObjects.addAll(GameMap.getDoors());
     }
 }

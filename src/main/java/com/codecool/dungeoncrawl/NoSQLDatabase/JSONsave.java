@@ -25,6 +25,7 @@ public class JSONsave {
 
         JSONArray actorsList = new JSONArray();
         JSONArray itemsList = new JSONArray();
+        JSONArray doorsList = new JSONArray();
         JSONObject player = new JSONObject();
         JSONObject mapLink = getMapLinkJSONObject();
 
@@ -42,6 +43,11 @@ public class JSONsave {
             if (object instanceof Item){
                 JSONObject item = getItemJSONObject((Item) object);
                 itemsList.add(item);
+            }
+
+            if (object instanceof Door){
+                JSONObject door = getDoorJSONObject((Door) object);
+                doorsList.add(door);
             }
         }
 
@@ -76,6 +82,18 @@ public class JSONsave {
         item.put("Item Type", instanceOfItem.getClass().getName());
 
         return item;
+    }
+
+
+    private static JSONObject getDoorJSONObject(Door instanceOfDoor){
+        JSONObject door = new JSONObject();
+
+        door.put("X", instanceOfDoor.getCell().getX());
+        door.put("Y", instanceOfDoor.getCell().getY());
+        door.put("isOpen", instanceOfDoor.isOpen());
+        door.put("Door Type", instanceOfDoor.getClass().getName());
+
+        return door;
     }
 
 

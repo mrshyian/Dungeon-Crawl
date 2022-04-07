@@ -114,7 +114,7 @@ public class GameMap {
         return skeletons;
     }
 
-    public ArrayList<Door> getDoors() {
+    public static ArrayList<Door> getDoors() {
         return doors;
     }
 
