@@ -35,6 +35,7 @@ public class MapLoader {
         int height = scanner.nextInt();// /2
         scanner.nextLine();
         GameMap map = new GameMap(width, height, CellType.EMPTY);
+        loadJSONSaveOnMap(map);
 
         for (int y = 0; y < height; ++y) {
             String line = scanner.nextLine();
@@ -229,7 +230,7 @@ public class MapLoader {
 //        if (flag > 3){
 //            loadJSONSaveOnMap(map);
 //        }
-        loadJSONSaveOnMap(map);
+//        loadJSONSaveOnMap(map);
         return map;
 
         //--------zaladowanie Actors z bazy-------------------
@@ -288,5 +289,9 @@ public class MapLoader {
             }
 
         }
+    }
+
+    public static void setFlag(int myFlag){
+        flag = myFlag;
     }
 }

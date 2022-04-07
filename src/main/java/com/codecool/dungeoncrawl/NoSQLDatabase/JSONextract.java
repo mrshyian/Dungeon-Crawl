@@ -72,7 +72,7 @@ public class JSONextract {
             }
 
             if (keys.contains("Map")){
-                //ToDo
+                MapLoader.setFlag((int)(long) ((JSONObject) object).get("Map"));
             }
         }
 
@@ -99,14 +99,14 @@ public class JSONextract {
         int playerPositionX = (int) (long) object.get("X");
         int playerPositionY = (int) (long) object.get("Y");
         int playerHP = (int) (long) object.get("HP");
+        String playerName = (String) object.get("Name");
 
-
-
-        GameMap playerGameMap = new GameMap(20, 20, CellType.FLOOR); // ToDo: ????
+        GameMap playerGameMap = new GameMap(20, 20, CellType.FLOOR);
         Cell playerCell = new Cell(playerGameMap, playerPositionX, playerPositionY, CellType.FLOOR);
         Player player = new Player(playerCell, playerTileName);
 
         player.setHealth(playerHP);
+        player.setName(playerName);
 
         BackPack playerBackPack = createPlayerBackPack(player, object);
         player.backpack = playerBackPack;
@@ -118,7 +118,7 @@ public class JSONextract {
         BackPack playerBackPack = new BackPack(owner);
         for (Object itemType : (JSONArray) backPackContent.get("BackPack")){
 
-            GameMap itemGameMap = new GameMap(20, 20, CellType.FLOOR); // ToDo: ????
+            GameMap itemGameMap = new GameMap(20, 20, CellType.FLOOR);
             Cell itemCell = new Cell(itemGameMap, 0, 0, CellType.FLOOR);
 
             Item item = (Item) createInstance((String) itemType);
@@ -153,7 +153,7 @@ public class JSONextract {
         int actorPositionY = (int) (long) object.get("Y");
         int actorHP = (int) (long) object.get("HP");
 
-        GameMap actorGameMap = new GameMap(20, 20, CellType.FLOOR); // ToDo: ????
+        GameMap actorGameMap = new GameMap(20, 20, CellType.FLOOR);
         Cell actorCell = new Cell(actorGameMap, actorPositionX, actorPositionY, CellType.FLOOR);
 
         Actor actor = (Actor) createInstance(actorType);
@@ -164,7 +164,7 @@ public class JSONextract {
     }
 
     private static Drawable createInstance(String instanceClassName) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        GameMap drawableGameMap = new GameMap(20, 20, CellType.FLOOR); // ToDo: ????
+        GameMap drawableGameMap = new GameMap(20, 20, CellType.FLOOR);
         Cell drawableCell = new Cell(drawableGameMap, 1, 1, CellType.FLOOR);
 
         System.out.println(instanceClassName);

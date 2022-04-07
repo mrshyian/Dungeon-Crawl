@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class JSONDatabaseManager {
     private static ArrayList<Object> allObjects = new ArrayList<>();
 
-    public void saveGame(){
+    public static void saveGame(){
         fillAllObjectsFromGameMap();
         JSONsave.saveToJSON(allObjects);
     }
@@ -17,7 +17,7 @@ public class JSONDatabaseManager {
         return allObjects;
     }
 
-    private void fillAllObjectsFromGameMap(){
+    private static void fillAllObjectsFromGameMap(){
         allObjects.add(GameMap.getPlayer());
         allObjects.addAll(GameMap.getGoblins());
         allObjects.addAll(GameMap.getGhosts());

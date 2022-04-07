@@ -59,10 +59,10 @@ public class JSONsave {
     private static JSONObject getActorJSONObject(Actor instanceOfActor){
         JSONObject actor = new JSONObject();
 
+        actor.put("Actor Type", instanceOfActor.getClass().getName());
         actor.put("X", instanceOfActor.getCell().getX());
         actor.put("Y", instanceOfActor.getCell().getY());
         actor.put("HP", instanceOfActor.getHealth());
-        actor.put("Actor Type", instanceOfActor.getClass().getName());
 
         return actor;
     }
@@ -86,6 +86,7 @@ public class JSONsave {
         player.put("Y", instanceOfPlayer.getCell().getY());
         player.put("HP", instanceOfPlayer.getHealth());
         player.put("Player", instanceOfPlayer.getTileName());
+        player.put("Name", instanceOfPlayer.getName());
 
         for (Item item : instanceOfPlayer.backpack.getBackpackContent()){
             backPack.add(item.getClass().getName());

@@ -104,9 +104,6 @@ public class Player extends Actor {
             enemy.getCell().setCellContent(null);
             enemy.getCell().getGameMap().removeNPC(enemy);
         }
-        System.out.println("Player " + this.getHealth() + " " + this.getShield() + " " + this.getAttackPower() + " " + this.getTileName());
-        System.out.println("Enemy health " + enemyHealthDifference);
-
     }
 
     private Cell getDoorCellIfCloseTo(){
@@ -216,4 +213,6 @@ public class Player extends Actor {
     public String getName() {
         return name;
     }
+
+    public void setName(String name) { this.name = name; }
 }
