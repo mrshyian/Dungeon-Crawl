@@ -49,6 +49,7 @@ public class GameDatabaseManager {
     public void saveGame(GameMap game) {
         if(game.getId() > 0) {
             gameStateDao.delete(game.getId());
+            playerDao.remove(game.getPlayer().getName());
         }
         PlayerModel playerModel = new PlayerModel(game.getPlayer());
         playerDao.add(playerModel);
