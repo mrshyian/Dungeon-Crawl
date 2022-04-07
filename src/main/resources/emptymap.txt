@@ -1,0 +1,29 @@
+45 28
+#############rrrrOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+#f.........f#rrrr########PPP#################
+#......#....######......#PPP#...............#
+#......#...........#z.#.#PPP#f..............#
+#..######...######..##..#PPP########.....f..#
+#...#.......#rrrr#..##..#PPPPPPPPPP#........#
+#...........#rrrr#.#..#.#PPPPPPPPPP#........#
+#f.........f#rrrr#......#PPPPP######........#
+#####.z######rrrr###..###PPPPP#.............#
+OOOO#.##rrrrrrrrrrr#..#########............f#
+OOOO#..#rrrrrrrrrrr#.................A......#
+OOOO#..#rrrrrrrrr###..#######################
+OO####.####rrrrrr#......#PPPPPPPPPPPPPPPPPPPP
+OO#.......#rrrrrr#.####.#PPPPPPPPPPPPPPPPPPPP
+OO#.......#rr###r#....#.#PPP  l  l PPPPPPPPPP
+OO#.......#rr#.#r#.####.#PPPPP  P  l  PPPPPPP
+OO#.####..#rr#.###.#....#PPPPPPPPPPPPPPPPPPPP
+OO#.......#rr#.....#.####PPPPPPPPPPPPPPPPPPPP
+OO#.......#rr#####.#....#PPPPPPPPPPPPPPPPPPPP
+OO#########rrrrrr######.#PPPPPPPPPPPPPPPPPPPP
+rrrrrrrrrrrrrrrrrrrrrr#.#PPPPPPPPPPPPPPPPPPPP
+rrrrrrrrrrrrrrrrrrrrrr#.#PPPPPPPPPPPPPPPPPPPP
+rrrrrrrrrrrrrr#########.#PPPPPPPPPPPPPPPPPPPP
+rrrrrrrrrrrrrr#f........#PPPPPPPPPPPPPPPPPPPP
+rrrrrrrrrrrrrr#.........#PPPPPPPPPPPPPPPPPPPP
+rrrrrrrrrrrrrr#........f#PPPPPPPPPPPPPPPPPPPP
+rrrrrrrrrrrrrr#f........#PPPPPPPPPPPPPPPPPPPP
+rrrrrrrrrrrrrr#########t#PPPPPPPPPPPPPPPPPPPP
