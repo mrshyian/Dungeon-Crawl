@@ -24,7 +24,7 @@ public class Player extends Actor {
 
     public Player(Cell cell, String name) {
         super(cell);
-        this.setHealth(5);
+        this.setHealth(10);
         this.setAttackPower(1);
         this.setShield(1);
         this.backpack = new BackPack(this);

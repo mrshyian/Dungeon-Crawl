@@ -5,16 +5,13 @@
 
 package com.codecool.dungeoncrawl.logic;
 
-import com.codecool.dungeoncrawl.Main;
 import com.codecool.dungeoncrawl.NoSQLDatabase.JSONDatabaseManager;
 import com.codecool.dungeoncrawl.NoSQLDatabase.JSONextract;
 import com.codecool.dungeoncrawl.logic.actors.*;
 import com.codecool.dungeoncrawl.logic.items.*;
-import org.json.simple.JSONObject;
 
-import java.io.IOException;
+
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
@@ -22,7 +19,6 @@ import java.util.Scanner;
 
 public class MapLoader {
     public static int flag = 0;
-    // private static Player player = new Player(new Cell(new GameMap(5,5,CellType.EMPTY),1,1,CellType.FLOOR));
     private static Player player;
     static String[] maps = new String[]{"/map.txt", "/map1.txt", "/map2.txt"};
 
@@ -43,10 +39,7 @@ public class MapLoader {
         } else {
             maps = new String[]{"/map.txt", "/map1.txt", "/map2.txt"};
             is = MapLoader.class.getResourceAsStream(maps[flag]);
-            System.out.println("dupa");
         }
-        System.out.println(flag);
-        System.out.println(maps[flag]);
         flag++;
         Scanner scanner = new Scanner(is);
         int width = scanner.nextInt();// /2
@@ -176,7 +169,7 @@ public class MapLoader {
                                 player = new Player(cell, playerName);
                             } else {
                                 if (player == null){
-//                                    flag++;
+                                    flag++;
 //                                    JSONDatabaseManager.saveGame();
                                     player = JSONextract.getCurrentPlayer();
                                     player.setTileName();
@@ -300,9 +293,5 @@ public class MapLoader {
                 ((Door) object).setCell(doorCell);
             }
         }
-    }
-
-    public static void setFlag(int myFlag){
-        flag = myFlag;
     }
 }

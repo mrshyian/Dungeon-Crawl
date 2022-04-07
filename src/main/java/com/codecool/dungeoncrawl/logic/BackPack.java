@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class BackPack {
     private Player owner;
     private Item tempPocket;
-    private int size = 10;
+    private int size = 20;
 
 
     private ArrayList<Item> backpack = new ArrayList<>();

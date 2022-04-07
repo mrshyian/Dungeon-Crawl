@@ -12,7 +12,7 @@ PPPPPPPPPPPPPPPPPPP###..###OOOOOOOOOOOOOOOOOO
 ####.##############..#...........#rrrrrrr#.#O
 rrr#.#rrrrrrrrrrrr#......s.......#rrrrr###.#O
 ####.###rrrrrr#####...........m..#rrrrr#...#O
-#S....q#rrrrrr#.....g....#########rrrrr#..##r
+#C....C#rrrrrr#.....g....#########rrrrr#..##r
 ########rrrrrr#.........z#rrrrrrrrrrrrr#g.#rr
 rrrrrrrrrrrrrr##..########rrrrrrrrrrrrr#..#rr
 OOOOOOOOOOOOOOO#..#rrrrrrrrrrrrrrrrrrrr#..#rr

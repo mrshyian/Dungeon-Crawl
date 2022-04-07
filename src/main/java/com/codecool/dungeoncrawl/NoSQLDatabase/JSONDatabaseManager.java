@@ -10,6 +10,7 @@ public class JSONDatabaseManager {
     public static void saveGame(){
         fillAllObjectsFromGameMap();
         JSONsave.saveToJSON(allObjects);
+        System.out.println("Game is saved now");
     }
 
     public static ArrayList<Object> getSave(){

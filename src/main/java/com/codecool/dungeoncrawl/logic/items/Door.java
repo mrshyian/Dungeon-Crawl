@@ -28,6 +28,11 @@ public class Door implements Drawable {
 
     @Override
     public String getTileName() {
-        return "door";
+        if (isOpen){
+            return "dooropen";
+        } else {
+            return "doorclose";
+        }
+//        return "door";
     }
 }
