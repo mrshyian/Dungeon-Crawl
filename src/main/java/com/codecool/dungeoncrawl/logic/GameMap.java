@@ -42,6 +42,15 @@ public class GameMap {
         }
     }
 
+    public static void clearAllLists() {
+        goblins = new ArrayList<>();
+        ghosts = new ArrayList<>();
+        monsters = new ArrayList<>();
+        skeletons = new ArrayList<>();
+        items = new ArrayList<>();
+        doors = new ArrayList<>();
+    }
+
     public Cell getCell(int x, int y) {
         return this.cells[x][y];
     }

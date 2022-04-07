@@ -169,7 +169,7 @@ public class Main extends Application {
         showInventaryBar();
         if (GameMap.nextMap()){
             PlayMusic.setSoundTrack("src/main/resources/music/teleport.wav", 80.0f);
-
+            GameMap.clearAllLists();
             map = MapLoader.loadMap(playerName);
             ai = new NpcMovement(map);
             refresh(primaryStage);

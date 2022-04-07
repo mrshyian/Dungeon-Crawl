@@ -5,6 +5,7 @@
 
 package com.codecool.dungeoncrawl.logic;
 
+import com.codecool.dungeoncrawl.Main;
 import com.codecool.dungeoncrawl.NoSQLDatabase.JSONDatabaseManager;
 import com.codecool.dungeoncrawl.NoSQLDatabase.JSONextract;
 import com.codecool.dungeoncrawl.logic.actors.*;
@@ -29,23 +30,24 @@ public class MapLoader {
     }
 
     public static GameMap loadMap(String playerName) {
-        if (flag>2){
+        if (flag>3){
             flag=0;
         }
         InputStream is = MapLoader.class.getResourceAsStream(maps[flag]);
         ArrayList<Object> allObjects = JSONDatabaseManager.getSave();
         if (flag==0) {
             if (Objects.equals(JSONextract.getCurrentPlayer().getName(), playerName)) {
-                maps = new String[]{"/mapEmpty.txt", "/map1Empty.txt", "/map2Empty.txt"};
+                maps = new String[]{"/emptymap.txt", "/emptymap1.txt", "/emptymap2.txt"};
                 is = MapLoader.class.getResourceAsStream(maps[JSONextract.getCurrentFlagMap() - 1]);
             }
         } else {
             maps = new String[]{"/map.txt", "/map1.txt", "/map2.txt"};
             is = MapLoader.class.getResourceAsStream(maps[flag]);
+            System.out.println("dupa");
         }
-        flag++;
         System.out.println(flag);
-        System.out.println(maps[flag-1]);
+        System.out.println(maps[flag]);
+        flag++;
         Scanner scanner = new Scanner(is);
         int width = scanner.nextInt();// /2
         int height = scanner.nextInt();// /2
@@ -174,9 +176,11 @@ public class MapLoader {
                                 player = new Player(cell, playerName);
                             } else {
                                 if (player == null){
-                                    JSONDatabaseManager.saveGame();
+//                                    flag++;
+//                                    JSONDatabaseManager.saveGame();
                                     player = JSONextract.getCurrentPlayer();
                                     player.setTileName();
+
                                 }
                                 cell.setCellContent(player);
                                 player.setCell(cell);
@@ -249,10 +253,7 @@ public class MapLoader {
             }
         }
 
-        if (Arrays.asList(maps).contains("/mapEmpty.txt")){
-//            if (GameMap.nextMap()) {
-//                System.out.println("haha");
-//            }
+        if (Arrays.asList(maps).contains("/emptymap.txt")){
             loadJSONSaveOnMap(map, allObjects);
         }
         return map;
