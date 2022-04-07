@@ -53,6 +53,7 @@ public class Main extends Application {
         ui = new GridPane();
     }
 
+
     @Override
     public void start(Stage primaryStage) {
         setupDbManager();

@@ -6,6 +6,7 @@ import com.codecool.dungeoncrawl.logic.items.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,7 +16,14 @@ public class JSONsave {
     private static JSONArray savedGame;
 
     public static void saveToJSON(ArrayList<Object> allObjects){
+
         savedGame = getJSONifiedGameData(allObjects);
+//        writeToFileNIC("savedGame.json");
+        try {
+            new FileOutputStream("savedGame.json").close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         writeToFile("savedGame.json");
     }
 
@@ -107,7 +115,6 @@ public class JSONsave {
 
     private static void writeToFile(String fileName){
         try (FileWriter file = new FileWriter(fileName)) {
-
             file.write(savedGame.toJSONString());
             file.flush();
 
@@ -115,6 +122,19 @@ public class JSONsave {
             e.printStackTrace();
         }
     }
+
+
+    private static void writeToFileNIC(String fileName){
+        try (FileWriter file = new FileWriter(fileName)) {
+
+            file.write("ss");
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 
 
