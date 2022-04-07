@@ -126,8 +126,9 @@ public class Main extends Application {
                 refresh(primaryStage);
                 break;
             case S:
-                Player player = map.getPlayer();
-                dbManager.savePlayer(player);
+                if (keyEvent.isControlDown()){
+                    dbManager.saveGame(map);
+                }
                 break;
         }
     }
