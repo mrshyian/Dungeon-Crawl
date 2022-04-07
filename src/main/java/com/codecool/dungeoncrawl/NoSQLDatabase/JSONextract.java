@@ -19,10 +19,20 @@ import java.util.Set;
 
 public class JSONextract {
     private static ArrayList<Object> allObjects = new ArrayList<>();
+    private static Player currentPlayer;
+    private static int currentFlagMap;
 
     public static ArrayList<Object> getAllObjects() {
         extractObjectsFromJSON("savedGame.json");
         return allObjects;
+    }
+
+    public static Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public static int getCurrentFlagMap() {
+        return currentFlagMap;
     }
 
     public static void extractObjectsFromJSON(String fileName){
@@ -69,12 +79,14 @@ public class JSONextract {
             if (keys.contains("Player")){
                 Player player = createPlayer((JSONObject) object);
                 addToAllObjectsList(player);
+                currentPlayer = player;
             }
 
             if (keys.contains("Map")){
 //                MapLoader.setFlag((int)(long) ((JSONObject) object).get("Map"));
                 Integer flagMap = ((int)(long) ((JSONObject) object).get("Map"));
                 addToAllObjectsList(flagMap);
+                currentFlagMap = flagMap;
             }
 
         }
