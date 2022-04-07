@@ -1,0 +1,29 @@
+45 28
+PPPPPPPPPPPPPPPPPPP########OOOOOOOOOOOOOOOOOO
+PPPPPPPPPPPPPPPPPP#.......#OOOOOOOOOOOOOOOOOO
+PPPPPPPPPPPPPPPPPPP###..###OOOOOOOOOOOOOOOOOO
+###################  #..#OOOOOOOOOOOOOOOOOOOO
+#................f#  #..#OOOOOOOOOOOOOOOOOOOO
+#.........###.....####..##########OOOOOOOOOOO
+#...........#...................z###########O
+#...........A......########................#O
+#...................#............#########.#O
+#f.........f#.......####.........#rrrrrrr#.#O
+####.##############..#...........#rrrrrrr#.#O
+rrr#.#rrrrrrrrrrrr#..............#rrrrr###.#O
+####.###rrrrrr#####..............#rrrrr#...#O
+#......#rrrrrr#..........#########rrrrr#..##r
+########rrrrrr#.........z#rrrrrrrrrrrrr#..#rr
+rrrrrrrrrrrrrr##..########rrrrrrrrrrrrr#..#rr
+OOOOOOOOOOOOOOO#..#rrrrrrrrrrrrrrrrrrrr#..#rr
+OOOOOOOOOOOOOOO#..######################..#rr
+OOOOOOOOOOOOOOO#..........................#rr
+OOOOOOOOOOOOOOO#f........................f#rr
+OOOOOOOOOOOOOOO##################....######rr
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO#....#rrrrrrr
+OOOOOOOOO###########OOOOOOOOOOOO#....#rrrrrrr
+##########f........#OOOOOOOOOOOO#....#rrrrrrr
+t...............A..##############...z#rrrrrrr
+##########.....###...................#rrrrrrr
+OOOOOOOOO#f...................A......#rrrrrrr
+OOOOOOOOO#############################rrrrrrr

@@ -5,23 +5,30 @@
 
 package com.codecool.dungeoncrawl.logic;
 
+import com.codecool.dungeoncrawl.logic.actors.*;
 import com.codecool.dungeoncrawl.logic.actors.Goblin;
 import com.codecool.dungeoncrawl.logic.actors.Ghost;
 import com.codecool.dungeoncrawl.logic.actors.Monster;
 import com.codecool.dungeoncrawl.logic.actors.Player;
+import com.codecool.dungeoncrawl.logic.items.Door;
 import com.codecool.dungeoncrawl.logic.items.Item;
+
 
 import java.util.ArrayList;
 
 public class GameMap {
+    private int id;
     private int width;
     private int height;
     private Cell[][] cells;
     private static Player player;
-    private static ArrayList<Goblin> goblins = new ArrayList<>();
-    private static ArrayList<Ghost> ghosts = new ArrayList<>();
-    private static ArrayList<Monster> monsters = new ArrayList<>();
-    private static ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<Goblin> goblins = new ArrayList<>();
+    private ArrayList<Ghost> ghosts = new ArrayList<>();
+    private ArrayList<Monster> monsters = new ArrayList<>();
+    private ArrayList<Skeleton> skeletons = new ArrayList<>();
+    private ArrayList<Item> items = new ArrayList<>();
+    private ArrayList<Door> doors = new ArrayList<>();
+
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
@@ -67,6 +74,18 @@ public class GameMap {
 
     public void setItem(Item item) { items.add(item); }
 
+    public void setSkeletonInitial(Skeleton skeleton){
+        skeletons.add(skeleton);
+    }
+
+    public void setDoorInitial(Door door){
+        doors.add(door);
+    }
+
+    public void setItemInitial(Item item){
+        items.add(item);
+    }
+
     public int getWidth() {
         return this.width;
     }
@@ -91,6 +110,14 @@ public class GameMap {
         return items;
     }
 
+    public ArrayList<Skeleton> getSkeletons() {
+        return skeletons;
+    }
+
+    public ArrayList<Door> getDoors() {
+        return doors;
+    }
+
     public void removeNPC(Drawable npc) {
         if (npc instanceof Goblin){
             goblins.remove(npc);
@@ -103,5 +130,17 @@ public class GameMap {
         if (npc instanceof Monster){
             monsters.remove(npc);
         }
+
+        if (npc instanceof Skeleton){
+            skeletons.remove(npc);
+        }
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 }

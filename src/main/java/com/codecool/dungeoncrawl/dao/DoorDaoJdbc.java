@@ -1,5 +1,6 @@
 package com.codecool.dungeoncrawl.dao;
 
+import com.codecool.dungeoncrawl.model.DoorModel;
 import com.codecool.dungeoncrawl.model.GameItemsModel;
 
 import javax.sql.DataSource;
@@ -7,38 +8,39 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameItemsDaoJdbc implements GameItemsDao {
+public class DoorDaoJdbc implements DoorDao {
 
     private DataSource dataSource;
 
-    public GameItemsDaoJdbc(DataSource dataSource) {
+    public DoorDaoJdbc(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
     @Override
-    public void add(GameItemsModel item) {
+    public void add(DoorModel door) {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "INSERT INTO game_items (game_id, item_id) VALUES (?, ?)";
+            String sql = "INSERT INTO door (x, y, is_open) VALUES (?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, item.getGameId());
-            statement.setInt(2, item.getItemId());
+            statement.setInt(1, door.getX());
+            statement.setInt(2, door.getY());
+            statement.setBoolean(3, door.isOpen());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             resultSet.next();
-            item.setId(resultSet.getInt(1));
+            door.setId(resultSet.getInt(1));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public void update(GameItemsModel item) {
+    public void update(DoorModel door) {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "UPDATE game_items SET game_id = ?, item_id = ? WHERE id = ?";
+            String sql = "UPDATE door SET x = ?, y = ?, is_open = ? WHERE id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, item.getGameId());
-            statement.setInt(2, item.getItemId());
-            statement.setInt(3, item.getId());
+            statement.setInt(1, door.getX());
+            statement.setInt(2, door.getY());
+            statement.setBoolean(3, door.isOpen());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -46,35 +48,35 @@ public class GameItemsDaoJdbc implements GameItemsDao {
     }
 
     @Override
-    public GameItemsModel get(int id) {
+    public DoorModel get(int id) {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "SELECT game_id, item_id FROM game_items WHERE id = ?";
+            String sql = "SELECT x, y, is_open FROM door WHERE id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, id);
-            ResultSet game = statement.executeQuery();
-            if (!game.next()) {
+            ResultSet door = statement.executeQuery();
+            if (!door.next()) {
                 return null;
             }
-            GameItemsModel item = new GameItemsModel(game.getInt(1), game.getInt(2));
-            item.setId(id);
-            return item;
+            DoorModel doorModel = new DoorModel(door.getInt(1), door.getInt(2), door.getBoolean(3));
+            doorModel.setId(id);
+            return doorModel;
         } catch (SQLException e) {
             throw new RuntimeException("Error while reading game item id: " + id, e);
         }
     }
 
     @Override
-    public List<GameItemsModel> getAll() {
+    public List<DoorModel> getAll() {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "SELECT id, game_id, item_id FROM game_items";
+            String sql = "SELECT id, x, y, is_open FROM door";
             ResultSet result = conn.createStatement().executeQuery(sql);
-            List<GameItemsModel> items = new ArrayList<>();
+            List<DoorModel> doors = new ArrayList<>();
             while (result.next()) {
-                GameItemsModel item = new GameItemsModel(result.getInt(2), result.getInt(3));
-                item.setId(result.getInt(1));
-                items.add(item);
+                DoorModel door = new DoorModel(result.getInt(2), result.getInt(3), result.getBoolean(4));
+                door.setId(result.getInt(1));
+                doors.add(door);
             }
-            return items;
+            return doors;
         } catch (SQLException e) {
             throw new RuntimeException("Error while reading all game items", e);
         }

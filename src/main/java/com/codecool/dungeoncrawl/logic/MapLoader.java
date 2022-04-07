@@ -23,11 +23,12 @@ public class MapLoader {
     }
 
     public static GameMap loadMap(String playerName) {
-        String[] maps = {"/mapTest.txt", "/map1.txt", "/map2.txt"};
+        String[] maps = {"/map.txt", "/map1.txt", "/map2.txt"};
         if (flag==3) {
             flag = 0;
         }
         InputStream is = MapLoader.class.getResourceAsStream(maps[flag]);
+
         flag++;
 
         Scanner scanner = new Scanner(is);
@@ -35,7 +36,7 @@ public class MapLoader {
         int height = scanner.nextInt();// /2
         scanner.nextLine();
         GameMap map = new GameMap(width, height, CellType.EMPTY);
-        loadJSONSaveOnMap(map);
+        //loadJSONSaveOnMap(map);
 
         for (int y = 0; y < height; ++y) {
             String line = scanner.nextLine();
@@ -170,10 +171,11 @@ public class MapLoader {
                             break;
                         case 'C':
                             cell.setType(CellType.FLOOR);
-                            new Cheese(cell);
+                            map.setItemInitial(new Cheese(cell));
                             break;
                         case 'D':
                             cell.setType(CellType.DOORCLOSE);
+                            map.setDoorInitial(new Door(cell));
                             break;
                         case 'O':
                             cell.setType(CellType.OAKS);
@@ -186,11 +188,11 @@ public class MapLoader {
                             break;
                         case 'S':
                             cell.setType(CellType.FLOOR);
-                            new Sword(cell);
+                            map.setItemInitial(new Sword(cell));
                             break;
                         case 'b':
                             cell.setType(CellType.FLOOR);
-                            new Sword1(cell);
+                            map.setItemInitial(new Sword1(cell));
                             break;
                         case 'd':
                             cell.setType(CellType.DOOROPEN);
@@ -200,18 +202,18 @@ public class MapLoader {
                             break;
                         case 'k':
                             cell.setType(CellType.FLOOR);
-                            new Key(cell);
+                            map.setItemInitial(new Key(cell));
                             break;
                         case 'q':
                             cell.setType(CellType.FLOOR);
-                            new Helmet(cell);
+                            map.setItemInitial(new Helmet(cell));
                             break;
                         case 'r':
                             cell.setType(CellType.RIVERBODY);
                             break;
                         case 's':
                             cell.setType(CellType.FLOOR);
-                            new Skeleton(cell);
+                            map.setSkeletonInitial(new Skeleton(cell));
                             break;
                         case 't':
                             cell.setType(CellType.STAIRS);

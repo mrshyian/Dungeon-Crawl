@@ -53,7 +53,6 @@ public class Main extends Application {
         ui = new GridPane();
     }
 
-
     @Override
     public void start(Stage primaryStage) {
         setupDbManager();
@@ -128,8 +127,11 @@ public class Main extends Application {
                 refresh(primaryStage);
                 break;
             case S:
+                if (keyEvent.isControlDown()){
+                    dbManager.saveGame(map);
+                }
                 Player player = map.getPlayer();
-                dbManager.savePlayer(player);
+                //dbManager.savePlayer(player);
                 JSONDatabaseManager.saveGame();
                 break;
         }

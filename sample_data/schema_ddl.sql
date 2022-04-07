@@ -87,28 +87,28 @@ CREATE TABLE public.game_doors
 );
 
 ALTER TABLE ONLY public.game_state
-    ADD CONSTRAINT fk_player_id FOREIGN KEY (player_name) REFERENCES public.player (name);
+    ADD CONSTRAINT fk_player_id FOREIGN KEY (player_name) REFERENCES public.player (name) ON DELETE CASCADE;
 
 ALTER TABLE ONLY public.game_opponents
-    ADD CONSTRAINT fk_opponent_id FOREIGN KEY (opponent_id) REFERENCES public.opponent (id);
+    ADD CONSTRAINT fk_opponent_id FOREIGN KEY (opponent_id) REFERENCES public.opponent (id) ON DELETE CASCADE;
 
 ALTER TABLE ONLY public.game_doors
-    ADD CONSTRAINT fk_door_id FOREIGN KEY (door_id) REFERENCES public.door (id);
+    ADD CONSTRAINT fk_door_id FOREIGN KEY (door_id) REFERENCES public.door (id) ON DELETE CASCADE;
 
 ALTER TABLE ONLY public.game_items
-    ADD CONSTRAINT fk_item_id FOREIGN KEY (item_id) REFERENCES public.item (id);
+    ADD CONSTRAINT fk_item_id FOREIGN KEY (item_id) REFERENCES public.item (id) ON DELETE CASCADE;
 
 ALTER TABLE ONLY public.player_backpack
-    ADD CONSTRAINT fk_player_name FOREIGN KEY (player_name) REFERENCES public.player (name);
+    ADD CONSTRAINT fk_player_name FOREIGN KEY (player_name) REFERENCES public.player (name) ON DELETE CASCADE;
 
 ALTER TABLE ONLY public.player_backpack
-    ADD CONSTRAINT fk_player_item_id FOREIGN KEY (item_id) REFERENCES public.item (id);
+    ADD CONSTRAINT fk_player_item_id FOREIGN KEY (item_id) REFERENCES public.item (id) ON DELETE CASCADE;
 
 ALTER TABLE ONLY public.game_items
-    ADD CONSTRAINT fk_game_items_id FOREIGN KEY (game_id) REFERENCES public.game_state (id);
+    ADD CONSTRAINT fk_game_items_id FOREIGN KEY (game_id) REFERENCES public.game_state (id) ON DELETE CASCADE;
 
 ALTER TABLE ONLY public.game_opponents
-    ADD CONSTRAINT fk_game_opponents_id FOREIGN KEY (game_id) REFERENCES public.game_state (id);
+    ADD CONSTRAINT fk_game_opponents_id FOREIGN KEY (game_id) REFERENCES public.game_state (id) ON DELETE CASCADE;
 
 ALTER TABLE ONLY public.game_doors
-    ADD CONSTRAINT fk_game_doors_id FOREIGN KEY (game_id) REFERENCES public.game_state (id);
+    ADD CONSTRAINT fk_game_doors_id FOREIGN KEY (game_id) REFERENCES public.game_state (id) ON DELETE CASCADE;

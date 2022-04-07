@@ -1,6 +1,6 @@
 package com.codecool.dungeoncrawl.dao;
 
-import com.codecool.dungeoncrawl.model.GameState;
+import com.codecool.dungeoncrawl.model.GameStateModel;
 import com.codecool.dungeoncrawl.model.PlayerModel;
 
 import javax.sql.DataSource;
@@ -19,7 +19,7 @@ public class GameStateDaoJdbc implements GameStateDao {
     }
 
     @Override
-    public void add(GameState state) {
+    public void add(GameStateModel state) {
         try (Connection conn = dataSource.getConnection()) {
             String sql = "INSERT INTO game_state (saved_at, current_map, player_name) VALUES (?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -36,7 +36,7 @@ public class GameStateDaoJdbc implements GameStateDao {
     }
 
     @Override
-    public void update(GameState state) {
+    public void update(GameStateModel state) {
         try (Connection conn = dataSource.getConnection()) {
             String sql = "UPDATE game_state SET saved_at = ?, current_map = ? WHERE id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -50,7 +50,7 @@ public class GameStateDaoJdbc implements GameStateDao {
     }
 
     @Override
-    public GameState get(int id) {
+    public GameStateModel get(int id) {
         try (Connection conn = dataSource.getConnection()) {
             String sql = "SELECT saved_at, current_map, player_name FROM game_state WHERE id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -60,7 +60,7 @@ public class GameStateDaoJdbc implements GameStateDao {
                 return null;
             }
             PlayerModel player = playerDaoJdbc.get(game.getString(3));
-            GameState gameState = new GameState(game.getString(2), game.getDate(1), player);
+            GameStateModel gameState = new GameStateModel(game.getString(2), game.getDate(1), player);
             gameState.setId(id);
             return gameState;
         } catch (SQLException e) {
@@ -69,14 +69,14 @@ public class GameStateDaoJdbc implements GameStateDao {
     }
 
     @Override
-    public List<GameState> getAll() {
+    public List<GameStateModel> getAll() {
         try (Connection conn = dataSource.getConnection()) {
             String sql = "SELECT id, saved_at, current_map, player_name FROM game_state";
             ResultSet result = conn.createStatement().executeQuery(sql);
-            List<GameState> games = new ArrayList<>();
+            List<GameStateModel> games = new ArrayList<>();
             while (result.next()) {
                 PlayerModel player = playerDaoJdbc.get(result.getString(4));
-                GameState gameState = new GameState(result.getString(3), result.getDate(2), player);
+                GameStateModel gameState = new GameStateModel(result.getString(3), result.getDate(2), player);
                 gameState.setId(result.getInt(1));
                 games.add(gameState);
             }
