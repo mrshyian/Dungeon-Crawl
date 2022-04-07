@@ -8,6 +8,7 @@ import com.codecool.dungeoncrawl.logic.MapLoader;
 import com.codecool.dungeoncrawl.logic.PlayMusic;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.items.Cheese;
+import com.codecool.dungeoncrawl.logic.items.Item;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -113,7 +114,7 @@ public class Main extends Application {
                 refresh(primaryStage);
                 break;
             case E:
-                map.getPlayer().getBackpack().addItemToBackPack();
+                map.getPlayer().getBackpack().addItemToBackPack(map.getItems());
                 infoLabel.setText(map.getPlayer().getBackpack().showItemInfo());
                 refresh(primaryStage);
                 break;
