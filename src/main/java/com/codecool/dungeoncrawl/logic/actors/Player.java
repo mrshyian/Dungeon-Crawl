@@ -104,6 +104,8 @@ public class Player extends Actor {
             enemy.getCell().setCellContent(null);
             enemy.getCell().getGameMap().removeNPC(enemy);
         }
+        System.out.println("Player " + this.getHealth() + " " + this.getShield() + " " + this.getAttackPower() + " " + this.getTileName());
+        System.out.println("Enemy health " + enemyHealthDifference);
 
     }
 

@@ -267,6 +267,7 @@ public class MapLoader {
                 ((Actor) object).setCell(cellForActor);
 
                 if (object instanceof Player){
+                    ((Player) object).setTileName();
                     GameMap.setPlayer((Player) object);
                 }
 

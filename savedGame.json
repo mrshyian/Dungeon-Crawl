@@ -1,1 +1,64 @@
-[{"Player":"naked player","BackPack":["com.codecool.dungeoncrawl.logic.items.Crown","com.codecool.dungeoncrawl.logic.items.Cheese","com.codecool.dungeoncrawl.logic.items.Cheese","com.codecool.dungeoncrawl.logic.items.Sword","com.codecool.dungeoncrawl.logic.items.Sword1","com.codecool.dungeoncrawl.logic.items.Key","com.codecool.dungeoncrawl.logic.items.Helmet"],"Shield":1,"X":3,"HP":5,"Y":4,"Attack":1},[{"X":3,"HP":2,"Y":4,"Actor Type":"com.codecool.dungeoncrawl.logic.actors.Ghost"},{"X":3,"HP":2,"Y":4,"Actor Type":"com.codecool.dungeoncrawl.logic.actors.Ghost"},{"X":3,"HP":1,"Y":4,"Actor Type":"com.codecool.dungeoncrawl.logic.actors.Goblin"},{"X":3,"HP":1,"Y":4,"Actor Type":"com.codecool.dungeoncrawl.logic.actors.Goblin"},{"X":3,"HP":3,"Y":4,"Actor Type":"com.codecool.dungeoncrawl.logic.actors.Monster"},{"X":3,"HP":1,"Y":4,"Actor Type":"com.codecool.dungeoncrawl.logic.actors.Skeleton"},{"X":3,"HP":1,"Y":4,"Actor Type":"com.codecool.dungeoncrawl.logic.actors.Skeleton"},{"X":3,"HP":1,"Y":4,"Actor Type":"com.codecool.dungeoncrawl.logic.actors.Skeleton"}],[{"X":3,"Y":4,"Item Type":"com.codecool.dungeoncrawl.logic.items.Cheese"},{"X":3,"Y":4,"Item Type":"com.codecool.dungeoncrawl.logic.items.Cheese"},{"X":3,"Y":4,"Item Type":"com.codecool.dungeoncrawl.logic.items.Helmet"},{"X":3,"Y":4,"Item Type":"com.codecool.dungeoncrawl.logic.items.Sword"},{"X":3,"Y":4,"Item Type":"com.codecool.dungeoncrawl.logic.items.Sword1"},{"X":3,"Y":4,"Item Type":"com.codecool.dungeoncrawl.logic.items.Crown"},{"X":3,"Y":4,"Item Type":"com.codecool.dungeoncrawl.logic.items.Key"}],{"Map":0}]
+[
+  {
+    "Player": "naked player",
+    "BackPack": [
+      "com.codecool.dungeoncrawl.logic.items.Cheese",
+      "com.codecool.dungeoncrawl.logic.items.Cheese",
+      "com.codecool.dungeoncrawl.logic.items.Sword",
+      "com.codecool.dungeoncrawl.logic.items.Sword1",
+      "com.codecool.dungeoncrawl.logic.items.Key",
+      "com.codecool.dungeoncrawl.logic.items.Helmet"
+    ],
+    "X": 7,
+    "HP": 20,
+    "Y": 2
+  },
+  [
+    {
+      "X": 2,
+      "HP": 3,
+      "Y": 4,
+      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Monster"
+    }
+  ],
+  [
+    {
+      "X": 3,
+      "Y": 4,
+      "Item Type": "com.codecool.dungeoncrawl.logic.items.Cheese"
+    },
+    {
+      "X": 3,
+      "Y": 4,
+      "Item Type": "com.codecool.dungeoncrawl.logic.items.Cheese"
+    },
+    {
+      "X": 3,
+      "Y": 4,
+      "Item Type": "com.codecool.dungeoncrawl.logic.items.Helmet"
+    },
+    {
+      "X": 3,
+      "Y": 4,
+      "Item Type": "com.codecool.dungeoncrawl.logic.items.Sword"
+    },
+    {
+      "X": 3,
+      "Y": 4,
+      "Item Type": "com.codecool.dungeoncrawl.logic.items.Sword1"
+    },
+    {
+      "X": 3,
+      "Y": 4,
+      "Item Type": "com.codecool.dungeoncrawl.logic.items.Crown"
+    },
+    {
+      "X": 3,
+      "Y": 4,
+      "Item Type": "com.codecool.dungeoncrawl.logic.items.Key"
+    }
+  ],
+  {
+    "Map": 0
+  }
+]

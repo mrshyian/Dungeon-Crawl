@@ -19,6 +19,7 @@ public class BackPack {
 
     public void addItemToBackPackDirecly(Item item){
         backpack.add(item);
+        updatePlayerParameters(item);
     }
 
 

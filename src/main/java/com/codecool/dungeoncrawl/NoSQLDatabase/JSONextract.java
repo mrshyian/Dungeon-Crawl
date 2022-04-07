@@ -45,12 +45,14 @@ public class JSONextract {
 
     }
 
+
     private static JSONArray getJSONFileContent(String fileName){
         JSONParser jsonParser = new JSONParser();
         JSONArray jsonFileContent = new JSONArray();
 
         try (FileReader reader = new FileReader(fileName)) {
             jsonFileContent = (JSONArray) jsonParser.parse(reader);
+//            System.out.println(jsonFileContent);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -97,8 +99,7 @@ public class JSONextract {
         int playerPositionX = (int) (long) object.get("X");
         int playerPositionY = (int) (long) object.get("Y");
         int playerHP = (int) (long) object.get("HP");
-        int playerAttack = (int) (long) object.get("Attack");
-        int playerShield = (int) (long) object.get("Shield");
+
 
 
         GameMap playerGameMap = new GameMap(20, 20, CellType.FLOOR); // ToDo: ????
@@ -106,8 +107,6 @@ public class JSONextract {
         Player player = new Player(playerCell, playerTileName);
 
         player.setHealth(playerHP);
-        player.setAttackPower(playerAttack);
-        player.setShield(playerShield);
 
         BackPack playerBackPack = createPlayerBackPack(player, object);
         player.backpack = playerBackPack;
@@ -131,7 +130,7 @@ public class JSONextract {
     }
 
     private static void addToAllObjectsList(Object object){
-        getAllObjects().add(object);
+        allObjects.add(object);
     }
 
     private static Item createItem(JSONObject object) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
@@ -167,6 +166,9 @@ public class JSONextract {
     private static Drawable createInstance(String instanceClassName) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         GameMap drawableGameMap = new GameMap(20, 20, CellType.FLOOR); // ToDo: ????
         Cell drawableCell = new Cell(drawableGameMap, 1, 1, CellType.FLOOR);
+
+        System.out.println(instanceClassName);
+
 
         Class<?> drawableClass = Class.forName(instanceClassName);
         Constructor<?> drawableClassConstructor = drawableClass.getConstructor(drawableCell.getClass());

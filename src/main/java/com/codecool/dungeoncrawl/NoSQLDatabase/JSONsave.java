@@ -85,8 +85,6 @@ public class JSONsave {
         player.put("X", instanceOfPlayer.getCell().getX());
         player.put("Y", instanceOfPlayer.getCell().getY());
         player.put("HP", instanceOfPlayer.getHealth());
-        player.put("Attack", instanceOfPlayer.getAttackPower());
-        player.put("Shield", instanceOfPlayer.getShield());
         player.put("Player", instanceOfPlayer.getTileName());
 
         for (Item item : instanceOfPlayer.backpack.getBackpackContent()){
