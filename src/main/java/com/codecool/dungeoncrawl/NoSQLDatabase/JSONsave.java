@@ -16,14 +16,7 @@ public class JSONsave {
     private static JSONArray savedGame;
 
     public static void saveToJSON(ArrayList<Object> allObjects){
-
         savedGame = getJSONifiedGameData(allObjects);
-//        writeToFileNIC("savedGame.json");
-        try {
-            new FileOutputStream("savedGame.json").close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         writeToFile("savedGame.json");
     }
 
@@ -114,7 +107,7 @@ public class JSONsave {
     }
 
     private static void writeToFile(String fileName){
-        try (FileWriter file = new FileWriter(fileName)) {
+        try (FileWriter file = new FileWriter(fileName,false)) {
             file.write(savedGame.toJSONString());
             file.flush();
 
@@ -122,64 +115,4 @@ public class JSONsave {
             e.printStackTrace();
         }
     }
-
-
-    private static void writeToFileNIC(String fileName){
-        try (FileWriter file = new FileWriter(fileName)) {
-
-            file.write("ss");
-            file.flush();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 }
-
-
-
-    //--------------------TEST---------------------------
-//        ArrayList<Object> allObjects = new ArrayList<>();
-//        Cell cell = new Cell(3,4);
-//
-//        Item crown = new Crown(cell);
-//        Item cheese = new Cheese(cell);
-//        Item sword = new Sword(cell);
-//        Item sword1 = new Sword1(cell);
-//        Item key = new Key(cell);
-//        Item helmet = new Helmet(cell);
-//
-//
-//
-//        Player władek = new Player(cell, "Władek");
-//        władek.backpack.addItemToBackPackDirecly(crown);
-//        władek.backpack.addItemToBackPackDirecly(cheese);
-//        władek.backpack.addItemToBackPackDirecly(cheese);
-//        władek.backpack.addItemToBackPackDirecly(sword);
-//        władek.backpack.addItemToBackPackDirecly(sword1);
-//        władek.backpack.addItemToBackPackDirecly(key);
-//        władek.backpack.addItemToBackPackDirecly(helmet);
-//
-//
-//        allObjects.add(new Ghost(cell));
-//        allObjects.add(new Ghost(cell));
-//        allObjects.add(new Goblin(cell));
-//        allObjects.add(new Goblin(cell));
-//        allObjects.add(new Monster(cell));
-//        allObjects.add(new Skeleton(cell));
-//        allObjects.add(new Skeleton(cell));
-//        allObjects.add(new Skeleton(cell));
-//        allObjects.add(new Cheese(cell));
-//        allObjects.add(new Cheese(cell));
-//        allObjects.add(new Helmet(cell));
-//        allObjects.add(new Sword(cell));
-//        allObjects.add(new Sword1(cell));
-//        allObjects.add(new Crown(cell));
-//        allObjects.add(new Key(cell));
-//        allObjects.add(władek);
-
-//    JSONextract lastSaveTest = new JSONextract();
-//        lastSaveTest.extractObjectsFromJSON("savedGame.json");
-//                ArrayList<Object> allObjects = JSONextract.getAllObjects();
-////-------------------------KONIEC-TESTU-----------------------

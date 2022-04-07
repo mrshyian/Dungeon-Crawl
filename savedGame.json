@@ -1,42 +1,40 @@
 [
   {
-    "Player": "naked player",
-    "BackPack": [],
-    "X": 3,
-    "HP": 5,
-    "Y": 18,
-    "Name": "asda"
+    "Player": "player with two sword and helm",
+    "BackPack": [
+      "com.codecool.dungeoncrawl.logic.items.Helmet",
+      "com.codecool.dungeoncrawl.logic.items.Sword",
+      "com.codecool.dungeoncrawl.logic.items.Sword1"
+    ],
+    "X": 23,
+    "HP": 7,
+    "Y": 14,
+    "Name": "dd"
   },
   [
     {
-      "X": 33,
-      "HP": 2,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Ghost",
-      "Y": 6
-    },
-    {
-      "X": 8,
-      "HP": 2,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Ghost",
-      "Y": 7
-    },
-    {
       "X": 29,
       "HP": 2,
       "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Ghost",
-      "Y": 11
+      "Y": 12
+    },
+    {
+      "X": 6,
+      "HP": 2,
+      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Ghost",
+      "Y": 10
+    },
+    {
+      "X": 27,
+      "HP": 2,
+      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Ghost",
+      "Y": 0
     },
     {
       "X": 5,
       "HP": 2,
       "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Ghost",
-      "Y": 15
-    },
-    {
-      "X": 4,
-      "HP": 3,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Monster",
-      "Y": 2
+      "Y": 20
     },
     {
       "X": 33,
@@ -45,22 +43,10 @@
       "Y": 2
     },
     {
-      "X": 6,
-      "HP": 3,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Monster",
-      "Y": 10
-    },
-    {
       "X": 18,
       "HP": 3,
       "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Monster",
       "Y": 26
-    },
-    {
-      "X": 8,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 2
     },
     {
       "X": 37,
@@ -73,12 +59,6 @@
       "HP": 1,
       "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
       "Y": 4
-    },
-    {
-      "X": 6,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 5
     },
     {
       "X": 40,
@@ -103,276 +83,6 @@
       "HP": 1,
       "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
       "Y": 8
-    },
-    {
-      "X": 22,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 12
-    },
-    {
-      "X": 7,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 15
-    },
-    {
-      "X": 22,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 16
-    },
-    {
-      "X": 17,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 24
-    },
-    {
-      "X": 21,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 25
-    },
-    {
-      "X": 33,
-      "HP": 2,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Ghost",
-      "Y": 3
-    },
-    {
-      "X": 8,
-      "HP": 2,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Ghost",
-      "Y": 6
-    },
-    {
-      "X": 30,
-      "HP": 2,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Ghost",
-      "Y": 11
-    },
-    {
-      "X": 4,
-      "HP": 2,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Ghost",
-      "Y": 13
-    },
-    {
-      "X": 4,
-      "HP": 3,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Monster",
-      "Y": 2
-    },
-    {
-      "X": 33,
-      "HP": 3,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Monster",
-      "Y": 2
-    },
-    {
-      "X": 6,
-      "HP": 3,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Monster",
-      "Y": 10
-    },
-    {
-      "X": 18,
-      "HP": 3,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Monster",
-      "Y": 26
-    },
-    {
-      "X": 8,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 2
-    },
-    {
-      "X": 37,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 2
-    },
-    {
-      "X": 37,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 4
-    },
-    {
-      "X": 6,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 5
-    },
-    {
-      "X": 40,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 6
-    },
-    {
-      "X": 18,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 7
-    },
-    {
-      "X": 34,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 8
-    },
-    {
-      "X": 40,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 8
-    },
-    {
-      "X": 22,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 12
-    },
-    {
-      "X": 7,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 15
-    },
-    {
-      "X": 22,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 16
-    },
-    {
-      "X": 17,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 24
-    },
-    {
-      "X": 21,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 25
-    },
-    {
-      "X": 32,
-      "HP": 2,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Ghost",
-      "Y": 2
-    },
-    {
-      "X": 7,
-      "HP": 2,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Ghost",
-      "Y": 7
-    },
-    {
-      "X": 29,
-      "HP": 2,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Ghost",
-      "Y": 10
-    },
-    {
-      "X": 5,
-      "HP": 2,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Ghost",
-      "Y": 14
-    },
-    {
-      "X": 4,
-      "HP": 3,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Monster",
-      "Y": 2
-    },
-    {
-      "X": 33,
-      "HP": 3,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Monster",
-      "Y": 2
-    },
-    {
-      "X": 6,
-      "HP": 3,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Monster",
-      "Y": 10
-    },
-    {
-      "X": 18,
-      "HP": 3,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Monster",
-      "Y": 26
-    },
-    {
-      "X": 8,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 2
-    },
-    {
-      "X": 37,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 2
-    },
-    {
-      "X": 37,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 4
-    },
-    {
-      "X": 6,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 5
-    },
-    {
-      "X": 40,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 6
-    },
-    {
-      "X": 18,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 7
-    },
-    {
-      "X": 34,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 8
-    },
-    {
-      "X": 40,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 8
-    },
-    {
-      "X": 22,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 12
-    },
-    {
-      "X": 7,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 15
-    },
-    {
-      "X": 22,
-      "HP": 1,
-      "Actor Type": "com.codecool.dungeoncrawl.logic.actors.Skeleton",
-      "Y": 16
     },
     {
       "X": 17,
@@ -388,116 +98,6 @@
     }
   ],
   [
-    {
-      "X": 29,
-      "Y": 2,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Cheese"
-    },
-    {
-      "X": 43,
-      "Y": 2,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Key"
-    },
-    {
-      "X": 22,
-      "Y": 5,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Cheese"
-    },
-    {
-      "X": 43,
-      "Y": 10,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Cheese"
-    },
-    {
-      "X": 3,
-      "Y": 13,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Sword"
-    },
-    {
-      "X": 9,
-      "Y": 13,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Helmet"
-    },
-    {
-      "X": 21,
-      "Y": 14,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Cheese"
-    },
-    {
-      "X": 14,
-      "Y": 15,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Sword1"
-    },
-    {
-      "X": 9,
-      "Y": 18,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Cheese"
-    },
-    {
-      "X": 23,
-      "Y": 18,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Key"
-    },
-    {
-      "X": 19,
-      "Y": 23,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Cheese"
-    },
-    {
-      "X": 29,
-      "Y": 2,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Cheese"
-    },
-    {
-      "X": 43,
-      "Y": 2,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Key"
-    },
-    {
-      "X": 22,
-      "Y": 5,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Cheese"
-    },
-    {
-      "X": 43,
-      "Y": 10,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Cheese"
-    },
-    {
-      "X": 3,
-      "Y": 13,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Sword"
-    },
-    {
-      "X": 9,
-      "Y": 13,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Helmet"
-    },
-    {
-      "X": 21,
-      "Y": 14,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Cheese"
-    },
-    {
-      "X": 14,
-      "Y": 15,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Sword1"
-    },
-    {
-      "X": 9,
-      "Y": 18,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Cheese"
-    },
-    {
-      "X": 23,
-      "Y": 18,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Key"
-    },
-    {
-      "X": 19,
-      "Y": 23,
-      "Item Type": "com.codecool.dungeoncrawl.logic.items.Cheese"
-    },
     {
       "X": 29,
       "Y": 2,

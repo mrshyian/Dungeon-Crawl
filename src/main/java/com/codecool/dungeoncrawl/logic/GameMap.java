@@ -22,12 +22,12 @@ public class GameMap {
     private int height;
     private Cell[][] cells;
     private static Player player;
-    private ArrayList<Goblin> goblins = new ArrayList<>();
-    private ArrayList<Ghost> ghosts = new ArrayList<>();
-    private ArrayList<Monster> monsters = new ArrayList<>();
-    private ArrayList<Skeleton> skeletons = new ArrayList<>();
-    private ArrayList<Item> items = new ArrayList<>();
-    private ArrayList<Door> doors = new ArrayList<>();
+    private static ArrayList<Goblin> goblins = new ArrayList<>();
+    private static ArrayList<Ghost> ghosts = new ArrayList<>();
+    private static ArrayList<Monster> monsters = new ArrayList<>();
+    private static ArrayList<Skeleton> skeletons = new ArrayList<>();
+    private static ArrayList<Item> items = new ArrayList<>();
+    private static ArrayList<Door> doors = new ArrayList<>();
 
 
     public GameMap(int width, int height, CellType defaultCellType) {
@@ -110,7 +110,7 @@ public class GameMap {
         return items;
     }
 
-    public ArrayList<Skeleton> getSkeletons() {
+    public static ArrayList<Skeleton> getSkeletons() {
         return skeletons;
     }
 
