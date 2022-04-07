@@ -5,10 +5,7 @@
 
 package com.codecool.dungeoncrawl.logic;
 
-import com.codecool.dungeoncrawl.logic.actors.Goblin;
-import com.codecool.dungeoncrawl.logic.actors.Ghost;
-import com.codecool.dungeoncrawl.logic.actors.Monster;
-import com.codecool.dungeoncrawl.logic.actors.Player;
+import com.codecool.dungeoncrawl.logic.actors.*;
 import com.codecool.dungeoncrawl.logic.items.Item;
 
 import java.util.ArrayList;
@@ -22,6 +19,7 @@ public class GameMap {
     private static ArrayList<Ghost> ghosts = new ArrayList<>();
     private static ArrayList<Monster> monsters = new ArrayList<>();
     private static ArrayList<Item> items = new ArrayList<>();
+    private static ArrayList<Skeleton> skeletons = new ArrayList<>();
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
@@ -33,6 +31,10 @@ public class GameMap {
                 this.cells[x][y] = new Cell(this, x, y, defaultCellType);
             }
         }
+    }
+
+    public static ArrayList<Skeleton> getSkeletons() {
+        return skeletons;
     }
 
     public Cell getCell(int x, int y) {
@@ -65,7 +67,9 @@ public class GameMap {
         monsters.add(monster);
     }
 
-    public void setItem(Item item) { items.add(item); }
+    public void setItemInitial(Item item) { items.add(item); }
+
+    public void setSkeletonsInitial(Skeleton skeleton) { skeletons.add(skeleton); }
 
     public int getWidth() {
         return this.width;

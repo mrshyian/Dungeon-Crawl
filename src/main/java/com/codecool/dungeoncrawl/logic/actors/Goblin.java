@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 public class Goblin extends Actor {
     private int goblinDirection;
-    private int directions[][] = {{1,0}, {0,1}, {-1,0}, {0,-1}};
+    private int directions[][] = {{1,0}, {0,1}, {-1,0}, {0,-1}, {0, 0}};
 
 
     public Goblin(Cell cell) {
@@ -48,6 +48,9 @@ public class Goblin extends Actor {
                         break;
                     case 3:
                         this.goblinDirection = 0;
+                        break;
+                    default:
+                        this.goblinDirection = 4;
                         break;
 
                 }

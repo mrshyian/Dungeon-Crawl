@@ -72,8 +72,11 @@ public class JSONextract {
             }
 
             if (keys.contains("Map")){
-                MapLoader.setFlag((int)(long) ((JSONObject) object).get("Map"));
+//                MapLoader.setFlag((int)(long) ((JSONObject) object).get("Map"));
+                Integer flagMap = ((int)(long) ((JSONObject) object).get("Map"));
+                addToAllObjectsList(flagMap);
             }
+
         }
 
         if (object instanceof JSONArray){
@@ -167,7 +170,6 @@ public class JSONextract {
         GameMap drawableGameMap = new GameMap(20, 20, CellType.FLOOR);
         Cell drawableCell = new Cell(drawableGameMap, 1, 1, CellType.FLOOR);
 
-        System.out.println(instanceClassName);
 
 
         Class<?> drawableClass = Class.forName(instanceClassName);

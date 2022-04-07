@@ -58,7 +58,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         setupDbManager();
 
-        System.out.println(map.getWidth());
 
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
@@ -83,7 +82,6 @@ public class Main extends Application {
         primaryStage.setMinWidth(800);
         primaryStage.centerOnScreen(); // wyśrodkowanie sceny na ekranie
         primaryStage.show();
-
     }
 
     private void onKeyReleased(KeyEvent keyEvent, Stage primaryStage) {
@@ -129,7 +127,7 @@ public class Main extends Application {
                 break;
             case S:
                 Player player = map.getPlayer();
-                dbManager.savePlayer(player);
+//                dbManager.savePlayer(player);
                 JSONDatabaseManager.saveGame();
                 break;
         }
@@ -138,6 +136,7 @@ public class Main extends Application {
     private void refresh(Stage primaryStage) {
         ui.getChildren().clear();
         ai.moveNpc(primaryStage);
+
 //        context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for (int x = 0; x < 43; x++) {
