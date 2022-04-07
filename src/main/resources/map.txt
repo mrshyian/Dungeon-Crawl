@@ -17,10 +17,10 @@ OO#.g.....#rr###r#...C#.#PPP  l  l PPPPPPPPPP
 OO#....s..#rr#b#r#.####.#PPPPP  P  l  PPPPPPP
 OO#.####..#rr#.###.#..s.#PPPPPPPPPPPPPPPPPPPP
 OO#.......#rr#.....#D####PPPPPPPPPPPPPPPPPPPP
-OO#@.....C#rr#####.#...k#PPPPPPPPPPPPPPPPPPPP
+OO#@.....C#rr#####.#....#PPPPPPPPPPPPPPPPPPPP
 OO#########rrrrrr######.#PPPPPPPPPPPPPPPPPPPP
 rrrrrrrrrrrrrrrrrrrrrr#.#PPPPPPPPPPPPPPPPPPPP
-rrrrrrrrrrrrrrrrrrrrrr#D#PPPPPPPPPPPPPPPPPPPP
+rrrrrrrrrrrrrrrrrrrrrr#.#PPPPPPPPPPPPPPPPPPPP
 rrrrrrrrrrrrrr#########.#PPPPPPPPPPPPPPPPPPPP
 rrrrrrrrrrrrrr#f...C....#PPPPPPPPPPPPPPPPPPPP
 rrrrrrrrrrrrrr#..s......#PPPPPPPPPPPPPPPPPPPP
