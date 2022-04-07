@@ -28,21 +28,21 @@ public class MapLoader {
             flag = 0;
         }
         ArrayList<Object> allObjects = JSONDatabaseManager.getSave();
-//        for (Object obj : allObjects){
-//            if (obj instanceof Integer){
-//                switch (flag) {
-//                    case 1:
-//                        flag = 3;
-//                        break;
-//                    case 2:
-//                        flag = 4;
-//                        break;
-//                    case 3:
-//                        flag = 5;
-//                        break;
-//                }
-//            }
-//        }
+        for (Object obj : allObjects){
+            if (obj instanceof Integer){
+                switch ((int) obj) {
+                    case 1:
+                        flag = 3;
+                        break;
+                    case 2:
+                        flag = 4;
+                        break;
+                    case 3:
+                        flag = 5;
+                        break;
+                }
+            }
+        }
         System.out.println(flag);
         InputStream is = MapLoader.class.getResourceAsStream(maps[flag]);
         flag++;
