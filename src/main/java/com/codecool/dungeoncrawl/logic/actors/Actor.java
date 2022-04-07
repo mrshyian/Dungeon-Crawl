@@ -16,6 +16,7 @@ public abstract class Actor implements Drawable {
     private int health;
     private int attackPower;
     private int shield;
+    private int id;
 
     public Actor(Cell cell) {
         this.cell = cell;
@@ -47,4 +48,8 @@ public abstract class Actor implements Drawable {
     public int getShield() { return shield; }
 
     public void setShield(int shield) { this.shield = shield; }
+
+    public void setId(int id){this.id = id;}
+
+    public int getId(){return this.id;}
 }
