@@ -7,6 +7,8 @@ package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.logic.actors.Actor;
 
+import java.util.Objects;
+
 public class Cell implements Drawable {
     private CellType type;
     private Drawable cellContent;
@@ -67,5 +69,18 @@ public class Cell implements Drawable {
 
     public GameMap getGameMap() {
         return gameMap;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this.x == ((Cell)o).x && this.y == ((Cell)o).y){
+            return true;
+        }
+        return false;
+       }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, cellContent, gameMap, x, y, actor);
     }
 }
