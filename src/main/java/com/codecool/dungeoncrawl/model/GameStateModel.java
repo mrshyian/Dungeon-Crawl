@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
 
-public class GameState extends BaseModel {
+public class GameStateModel extends BaseModel {
     private Date savedAt;
     private String currentMap;
     private List<String> discoveredMaps = new ArrayList<>();
     private PlayerModel player;
 
-    public GameState(String currentMap, Date savedAt, PlayerModel player) {
+    public GameStateModel(String currentMap, Date savedAt, PlayerModel player) {
         this.currentMap = currentMap;
         this.savedAt = savedAt;
         this.player = player;

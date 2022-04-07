@@ -109,4 +109,16 @@ public class PlayerDaoJdbc implements PlayerDao {
             throw new RuntimeException("Error while reading all players", e);
         }
     }
+
+    @Override
+    public void remove(String name) {
+        try (Connection conn = dataSource.getConnection()) {
+            String sql = "DELETE FROM player WHERE name = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, name);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("You cannot delete player with name: " + name, e);
+        }
+    }
 }

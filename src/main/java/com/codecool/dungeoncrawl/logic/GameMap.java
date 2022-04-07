@@ -12,6 +12,7 @@ import com.codecool.dungeoncrawl.logic.items.Item;
 import java.util.ArrayList;
 
 public class GameMap {
+    private int id;
     private int width;
     private int height;
     private Cell[][] cells;
@@ -127,5 +128,13 @@ public class GameMap {
         if (npc instanceof Skeleton){
             skeletons.remove(npc);
         }
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 }

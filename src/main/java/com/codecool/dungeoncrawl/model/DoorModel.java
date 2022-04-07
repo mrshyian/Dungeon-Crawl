@@ -1,13 +1,20 @@
 package com.codecool.dungeoncrawl.model;
 
+import com.codecool.dungeoncrawl.logic.items.Door;
+
 public class DoorModel extends BaseModel {
 
     private int x;
     private int y;
     private boolean isOpen;
-    private int id;
 
-    public DoorModel(int id, int x, int y, boolean isOpen) {
+    public DoorModel(Door door) {
+        this.x = door.getCell().getX();
+        this.y = door.getCell().getY();
+        this.isOpen = false;
+    }
+
+    public DoorModel(int x, int y, boolean isOpen) {
         this.x = x;
         this.y = y;
         this.isOpen = isOpen;
