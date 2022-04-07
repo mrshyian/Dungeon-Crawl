@@ -22,4 +22,12 @@ public class Door implements Drawable {
     public String getTileName() {
         return "door";
     }
+
+    public void openDoor(){
+        isOpen = true;
+    }
+
+    public boolean isOpen() {
+        return isOpen;
+    }
 }

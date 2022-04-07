@@ -118,7 +118,7 @@ public class Main extends Application {
                 refresh(primaryStage);
                 break;
             case K:
-                map.getPlayer().openDoor();
+                map.getPlayer().openDoor(map.getDoors());
                 refresh(primaryStage);
                 break;
             case Q:
