@@ -1,5 +1,6 @@
 package com.codecool.dungeoncrawl;
 
+import com.codecool.dungeoncrawl.NoSQLDatabase.JSONDatabaseManager;
 import com.codecool.dungeoncrawl.dao.GameDatabaseManager;
 import com.codecool.dungeoncrawl.logic.AiMovement.NpcMovement;
 import com.codecool.dungeoncrawl.logic.Cell;
@@ -38,6 +39,7 @@ public class Main extends Application {
     GridPane ui;
     String playerName;
     GameDatabaseManager dbManager;
+    JSONDatabaseManager jsonManager;
 
     public Main(String playerName) {
         this.playerName = playerName;
@@ -129,6 +131,7 @@ public class Main extends Application {
             case S:
                 Player player = map.getPlayer();
                 dbManager.savePlayer(player);
+                jsonManager.saveGame();
                 break;
         }
     }

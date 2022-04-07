@@ -1,4 +1,4 @@
-package com.codecool.dungeoncrawl.dao;
+package com.codecool.dungeoncrawl.NoSQLDatabase;
 
 import com.codecool.dungeoncrawl.logic.*;
 import com.codecool.dungeoncrawl.logic.actors.Actor;
@@ -20,9 +20,12 @@ import java.util.Set;
 public class JSONextract {
     private static ArrayList<Object> allObjects = new ArrayList<>();
 
-    public static ArrayList<Object> getAllObjects() { return allObjects; }
+    public static ArrayList<Object> getAllObjects() {
+        extractObjectsFromJSON("savedGame.json");
+        return allObjects;
+    }
 
-    public void extractObjectsFromJSON(String fileName){
+    public static void extractObjectsFromJSON(String fileName){
         JSONArray jsonFileContent = getJSONFileContent(fileName);
         jsonFileContent.forEach(record -> {
             try {
@@ -42,7 +45,7 @@ public class JSONextract {
 
     }
 
-    private JSONArray getJSONFileContent(String fileName){
+    private static JSONArray getJSONFileContent(String fileName){
         JSONParser jsonParser = new JSONParser();
         JSONArray jsonFileContent = new JSONArray();
 

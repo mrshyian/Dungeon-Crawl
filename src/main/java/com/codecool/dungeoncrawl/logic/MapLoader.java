@@ -5,6 +5,7 @@
 
 package com.codecool.dungeoncrawl.logic;
 
+import com.codecool.dungeoncrawl.NoSQLDatabase.JSONDatabaseManager;
 import com.codecool.dungeoncrawl.logic.actors.*;
 import com.codecool.dungeoncrawl.logic.items.*;
 import org.json.simple.JSONObject;
@@ -225,7 +226,11 @@ public class MapLoader {
             }
         }
 
-
+//        if (flag > 3){
+//            loadJSONSaveOnMap(map);
+//        }
+        loadJSONSaveOnMap(map);
+        return map;
 
         //--------zaladowanie Actors z bazy-------------------
 //        ArrayList<Actor> actorsFromJSON = new ArrayList<>(); //przykładowo
@@ -249,6 +254,38 @@ public class MapLoader {
 //            }
 //        }
 
-        return map;
+    }
+
+
+    private static void loadJSONSaveOnMap(GameMap map){
+        ArrayList<Object> allObjects = JSONDatabaseManager.getSave();
+        for (Object object : allObjects){
+            if (object instanceof Actor){
+                Cell cellForActor = map.getCell(((Actor) object).getCell().getX(), ((Actor) object).getCell().getY());
+                cellForActor.setType(CellType.FLOOR);
+                cellForActor.setCellContent((Actor) object);
+                ((Actor) object).setCell(cellForActor);
+
+                if (object instanceof Player){
+                    GameMap.setPlayer((Player) object);
+                }
+
+                if (object instanceof Ghost){
+                    map.setGhostInitial((Ghost) object);
+                } else if (object instanceof Monster){
+                    map.setMonsterInitial((Monster) object);
+                } else if (object instanceof Goblin){
+                    map.setGoblinInitial(new Goblin(cellForActor));
+                }
+            }
+
+            if (object instanceof Item){
+                Cell cellForActor = map.getCell(((Item) object).getCell().getX(), ((Item) object).getCell().getY());
+                cellForActor.setType(CellType.FLOOR);
+                cellForActor.setCellContent((Item) object);
+                ((Item) object).setCell(cellForActor);
+            }
+
+        }
     }
 }

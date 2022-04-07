@@ -9,6 +9,7 @@ import com.codecool.dungeoncrawl.logic.actors.Goblin;
 import com.codecool.dungeoncrawl.logic.actors.Ghost;
 import com.codecool.dungeoncrawl.logic.actors.Monster;
 import com.codecool.dungeoncrawl.logic.actors.Player;
+import com.codecool.dungeoncrawl.logic.items.Item;
 
 import java.util.ArrayList;
 
@@ -17,9 +18,10 @@ public class GameMap {
     private int height;
     private Cell[][] cells;
     private static Player player;
-    private ArrayList<Goblin> goblins = new ArrayList<>();
-    private ArrayList<Ghost> ghosts = new ArrayList<>();
-    private ArrayList<Monster> monsters = new ArrayList<>();
+    private static ArrayList<Goblin> goblins = new ArrayList<>();
+    private static ArrayList<Ghost> ghosts = new ArrayList<>();
+    private static ArrayList<Monster> monsters = new ArrayList<>();
+    private static ArrayList<Item> items = new ArrayList<>();
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
@@ -37,12 +39,10 @@ public class GameMap {
         return this.cells[x][y];
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
+    public static void setPlayer(Player myPlayer) { player = myPlayer; }
 
-    public Player getPlayer() {
-        return this.player;
+    public static Player getPlayer() {
+        return player;
     }
 
     public static boolean nextMap() {
@@ -65,6 +65,8 @@ public class GameMap {
         monsters.add(monster);
     }
 
+    public void setItem(Item item) { items.add(item); }
+
     public int getWidth() {
         return this.width;
     }
@@ -73,16 +75,20 @@ public class GameMap {
         return this.height;
     }
 
-    public ArrayList<Goblin> getGoblins() {
+    public static ArrayList<Goblin> getGoblins() {
         return goblins;
     }
 
-    public ArrayList<Ghost> getGhosts() {
+    public static ArrayList<Ghost> getGhosts() {
         return ghosts;
     }
 
-    public ArrayList<Monster> getMonsters() {
+    public static ArrayList<Monster> getMonsters() {
         return monsters;
+    }
+
+    public static ArrayList<Item> getItems() {
+        return items;
     }
 
     public void removeNPC(Drawable npc) {

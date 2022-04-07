@@ -1,6 +1,5 @@
-package com.codecool.dungeoncrawl.dao;
+package com.codecool.dungeoncrawl.NoSQLDatabase;
 
-import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 import com.codecool.dungeoncrawl.logic.actors.*;
 import com.codecool.dungeoncrawl.logic.items.*;
@@ -13,13 +12,115 @@ import java.util.ArrayList;
 
 
 public class JSONsave {
-    private JSONArray savedGame;
+    private static JSONArray savedGame;
 
-    public JSONArray getSavedGame() { return savedGame; }
+    public static void saveToJSON(ArrayList<Object> allObjects){
+        savedGame = getJSONifiedGameData(allObjects);
+        writeToFile("savedGame.json");
+    }
 
-    public void saveToJSON(){
+    private static JSONArray getJSONifiedGameData(ArrayList<Object> allObjects){
+        JSONArray gameSave = new JSONArray();
 
-        //--------------------TEST---------------------------
+        JSONArray actorsList = new JSONArray();
+        JSONArray itemsList = new JSONArray();
+        JSONObject player = new JSONObject();
+        JSONObject mapLink = getMapLinkJSONObject();
+
+
+        for (Object object : allObjects){
+            if (object instanceof Player){
+                player = getPlayerJSONObject((Player) object);
+            }
+
+            if ((object instanceof Actor) && !(object instanceof Player)){
+                JSONObject actor = getActorJSONObject((Actor) object);
+                actorsList.add(actor);
+            }
+
+            if (object instanceof Item){
+                JSONObject item = getItemJSONObject((Item) object);
+                itemsList.add(item);
+            }
+        }
+
+        gameSave.add(player);
+        if (!actorsList.isEmpty()){
+            gameSave.add(actorsList);
+        }
+        if (!itemsList.isEmpty()){
+            gameSave.add(itemsList);
+        }
+        gameSave.add(mapLink);
+
+        return gameSave;
+    }
+
+    private static JSONObject getActorJSONObject(Actor instanceOfActor){
+        JSONObject actor = new JSONObject();
+
+        actor.put("X", instanceOfActor.getCell().getX());
+        actor.put("Y", instanceOfActor.getCell().getY());
+        actor.put("HP", instanceOfActor.getHealth());
+        actor.put("Actor Type", instanceOfActor.getClass().getName());
+
+        return actor;
+    }
+
+    private static JSONObject getItemJSONObject(Item instanceOfItem){
+        JSONObject item = new JSONObject();
+
+        item.put("X", instanceOfItem.getCell().getX());
+        item.put("Y", instanceOfItem.getCell().getY());
+        item.put("Item Type", instanceOfItem.getClass().getName());
+
+        return item;
+    }
+
+
+    private static JSONObject getPlayerJSONObject(Player instanceOfPlayer){
+        JSONObject player = new JSONObject();
+        JSONArray backPack = new JSONArray();
+
+        player.put("X", instanceOfPlayer.getCell().getX());
+        player.put("Y", instanceOfPlayer.getCell().getY());
+        player.put("HP", instanceOfPlayer.getHealth());
+        player.put("Attack", instanceOfPlayer.getAttackPower());
+        player.put("Shield", instanceOfPlayer.getShield());
+        player.put("Player", instanceOfPlayer.getTileName());
+
+        for (Item item : instanceOfPlayer.backpack.getBackpackContent()){
+            backPack.add(item.getClass().getName());
+        }
+
+        player.put("BackPack", backPack);
+
+        return player;
+    }
+
+    private static JSONObject getMapLinkJSONObject(){
+        JSONObject mapLink = new JSONObject();
+
+        mapLink.put("Map", MapLoader.flag);
+
+        return mapLink;
+    }
+
+    private static void writeToFile(String fileName){
+        try (FileWriter file = new FileWriter(fileName)) {
+
+            file.write(savedGame.toJSONString());
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+
+    //--------------------TEST---------------------------
 //        ArrayList<Object> allObjects = new ArrayList<>();
 //        Cell cell = new Cell(3,4);
 //
@@ -59,110 +160,7 @@ public class JSONsave {
 //        allObjects.add(new Key(cell));
 //        allObjects.add(władek);
 
-        JSONextract lastSaveTest = new JSONextract();
-        lastSaveTest.extractObjectsFromJSON("savedGame.json");
-        ArrayList<Object> allObjects = JSONextract.getAllObjects();
-        //-------------------------KONIEC-TESTU-----------------------
-
-        this.savedGame = getJSONifiedGameData(allObjects);
-        writeToFile("savedGame.json");
-    }
-
-    private JSONArray getJSONifiedGameData(ArrayList<Object> allObjects){
-        JSONArray gameSave = new JSONArray();
-
-        JSONArray actorsList = new JSONArray();
-        JSONArray itemsList = new JSONArray();
-        JSONObject player = new JSONObject();
-        JSONObject mapLink = getMapLinkJSONObject();
-
-
-        for (Object object : allObjects){
-            if (object instanceof Player){
-                player = getPlayerJSONObject((Player) object);
-            }
-
-            if ((object instanceof Actor) && !(object instanceof Player)){
-                JSONObject actor = getActorJSONObject((Actor) object);
-                actorsList.add(actor);
-            }
-
-            if (object instanceof Item){
-                JSONObject item = getItemJSONObject((Item) object);
-                itemsList.add(item);
-            }
-        }
-
-        gameSave.add(player);
-        if (!actorsList.isEmpty()){
-            gameSave.add(actorsList);
-        }
-        if (!itemsList.isEmpty()){
-            gameSave.add(itemsList);
-        }
-        gameSave.add(mapLink);
-
-        return gameSave;
-    }
-
-    private JSONObject getActorJSONObject(Actor instanceOfActor){
-        JSONObject actor = new JSONObject();
-
-        actor.put("X", instanceOfActor.getCell().getX());
-        actor.put("Y", instanceOfActor.getCell().getY());
-        actor.put("HP", instanceOfActor.getHealth());
-        actor.put("Actor Type", instanceOfActor.getClass().getName());
-
-        return actor;
-    }
-
-    private JSONObject getItemJSONObject(Item instanceOfItem){
-        JSONObject item = new JSONObject();
-
-        item.put("X", instanceOfItem.getCell().getX());
-        item.put("Y", instanceOfItem.getCell().getY());
-        item.put("Item Type", instanceOfItem.getClass().getName());
-
-        return item;
-    }
-
-
-    private JSONObject getPlayerJSONObject(Player instanceOfPlayer){
-        JSONObject player = new JSONObject();
-        JSONArray backPack = new JSONArray();
-
-        player.put("X", instanceOfPlayer.getCell().getX());
-        player.put("Y", instanceOfPlayer.getCell().getY());
-        player.put("HP", instanceOfPlayer.getHealth());
-        player.put("Attack", instanceOfPlayer.getAttackPower());
-        player.put("Shield", instanceOfPlayer.getShield());
-        player.put("Player", instanceOfPlayer.getTileName());
-
-        for (Item item : instanceOfPlayer.backpack.getBackpackContent()){
-            backPack.add(item.getClass().getName());
-        }
-
-        player.put("BackPack", backPack);
-
-        return player;
-    }
-
-    private JSONObject getMapLinkJSONObject(){
-        JSONObject mapLink = new JSONObject();
-
-        mapLink.put("Map", MapLoader.flag);
-
-        return mapLink;
-    }
-
-    private void writeToFile(String fileName){
-        try (FileWriter file = new FileWriter(fileName)) {
-
-            file.write(this.getSavedGame().toJSONString());
-            file.flush();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-}
+//    JSONextract lastSaveTest = new JSONextract();
+//        lastSaveTest.extractObjectsFromJSON("savedGame.json");
+//                ArrayList<Object> allObjects = JSONextract.getAllObjects();
+////-------------------------KONIEC-TESTU-----------------------
