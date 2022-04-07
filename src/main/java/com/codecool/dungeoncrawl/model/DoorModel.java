@@ -11,7 +11,7 @@ public class DoorModel extends BaseModel {
     public DoorModel(Door door) {
         this.x = door.getCell().getX();
         this.y = door.getCell().getY();
-        this.isOpen = false;
+        this.isOpen = door.isOpen();
     }
 
     public DoorModel(int x, int y, boolean isOpen) {

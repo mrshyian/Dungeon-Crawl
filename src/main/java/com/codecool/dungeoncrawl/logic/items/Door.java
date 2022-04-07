@@ -35,4 +35,12 @@ public class Door implements Drawable {
         }
 //        return "door";
     }
+
+    public void openDoor(){
+        isOpen = true;
+    }
+
+    public boolean isOpen() {
+        return isOpen;
+    }
 }

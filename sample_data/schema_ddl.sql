@@ -112,3 +112,36 @@ ALTER TABLE ONLY public.game_opponents
 
 ALTER TABLE ONLY public.game_doors
     ADD CONSTRAINT fk_game_doors_id FOREIGN KEY (game_id) REFERENCES public.game_state (id) ON DELETE CASCADE;
+
+CREATE OR REPLACE FUNCTION remove_game_item() RETURNS trigger AS
+$$BEGIN
+    DELETE FROM item where id = OLD.item_id;
+    RETURN OLD;
+END$$ language plpgsql;
+
+CREATE TRIGGER remove_game_items AFTER DELETE ON game_items FOR EACH ROW EXECUTE FUNCTION remove_game_item();
+
+CREATE OR REPLACE FUNCTION remove_game_opponent() RETURNS trigger AS
+$$BEGIN
+    DELETE FROM opponent where id = OLD.opponent_id;
+    RETURN OLD;
+END$$ language plpgsql;
+
+CREATE TRIGGER remove_game_opponents AFTER DELETE ON game_opponents FOR EACH ROW EXECUTE FUNCTION remove_game_opponent();
+
+CREATE OR REPLACE FUNCTION remove_game_door() RETURNS trigger AS
+$$BEGIN
+    DELETE FROM door where id = OLD.door_id;
+    RETURN OLD;
+END$$ language plpgsql;
+
+CREATE TRIGGER remove_game_doors AFTER DELETE ON game_doors FOR EACH ROW EXECUTE FUNCTION remove_game_door();
+
+CREATE OR REPLACE FUNCTION remove_player_backpack_item() RETURNS trigger AS
+$$BEGIN
+    DELETE FROM item where id = OLD.item_id;
+    RETURN OLD;
+END$$ language plpgsql;
+
+CREATE TRIGGER remove_player_backpack_items AFTER DELETE ON player_backpack FOR EACH ROW EXECUTE FUNCTION remove_player_backpack_item();
+
