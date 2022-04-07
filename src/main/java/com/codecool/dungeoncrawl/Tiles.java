@@ -24,6 +24,7 @@ public class Tiles {
         context.drawImage(tileset, (double)tile.x, (double)tile.y, (double)tile.w, (double)tile.h, (double)(x * TILE_WIDTH), (double)(y * TILE_WIDTH), (double)TILE_WIDTH, (double)TILE_WIDTH);
     }
 
+    //
     static {
         tileMap.put("<>", new Tiles.Tile(0, 7));
         tileMap.put("bridge", new Tiles.Tile(16, 5));
