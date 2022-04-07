@@ -58,7 +58,7 @@ public class OpponentDaoJdbc implements OpponentDao {
     @Override
     public OpponentModel get(int id){
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "SELECT x, y, name, health, power, shield FROM opponent" +
+            String sql = "SELECT id, x, y, name, health, power, shield FROM opponent" +
                     " WHERE id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, id);
@@ -80,7 +80,7 @@ public class OpponentDaoJdbc implements OpponentDao {
     public List<OpponentModel> getAll() {
         try (Connection conn = dataSource.getConnection()) {
 
-            String sql = "SELECT x, y, name, health, power, shield FROM opponent";
+            String sql = "SELECT id, x, y, name, health, power, shield FROM opponent";
             ResultSet rs = conn.createStatement().executeQuery(sql);
 
             List<OpponentModel> result = new ArrayList<>();
@@ -96,15 +96,16 @@ public class OpponentDaoJdbc implements OpponentDao {
     }
 
     private OpponentModel exportDataSet(ResultSet rs) throws SQLException {
+        int id = rs.getInt(1);
         int x = rs.getInt(2);
-        int y = rs.getInt(1);
-        String name = rs.getString(3);
-        int hp = rs.getInt(4);
-        int power = rs.getInt(5);
-        int shield = rs.getInt(6);
+        int y = rs.getInt(3);
+        String name = rs.getString(4);
+        int hp = rs.getInt(5);
+        int power = rs.getInt(6);
+        int shield = rs.getInt(7);
 
 
-        OpponentModel opponentModel = new OpponentModel(name, x, y, hp, power, shield);
+        OpponentModel opponentModel = new OpponentModel(name, id, x, y, hp, power, shield);
         return opponentModel;
     }
 }

@@ -1,42 +1,43 @@
 package com.codecool.dungeoncrawl.model;
 
-import com.codecool.dungeoncrawl.logic.actors.Actor;
-import com.codecool.dungeoncrawl.logic.actors.Ghost;
 
-public class OpponentModel extends BaseModel{
-    private String opponentName;
+import com.codecool.dungeoncrawl.logic.items.Item;
+
+public class ItemModel extends BaseModel{
     private int x;
     private int y;
+    private String itemName;
     private int hp;
     private int power;
     private int shield;
     private int id;
 
-    public OpponentModel(Actor opponent){
-        this.opponentName = opponent.getTileName();
-        this.x = opponent.getX();
-        this.y = opponent.getY();
-        this.hp = opponent.getHealth();
-        this.power = opponent.getAttackPower();
-        this.shield = opponent.getShield();
+    public ItemModel(Item item){
+        this.itemName = item.getTileName();
+        this.x = item.getX();
+        this.y = item.getY();
+        this.hp = item.getHealthUpper();
+        this.power = item.getAttackUpper();
+        this.shield = item.getShieldUpper();
+        this.id = item.getId();
     }
 
-    public OpponentModel(String opponentName, int id, int x, int y, int hp, int power, int shield){
+    public ItemModel(int id, int x, int y, String name, int hp, int power, int shield){
         this.id = id;
-        this.opponentName = opponentName;
         this.x = x;
         this.y = y;
+        this.itemName = name;
         this.hp = hp;
         this.power = power;
         this.shield = shield;
     }
 
-    public String getOpponentName() {
-        return opponentName;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setOpponentName(String playerName) {
-        this.opponentName = playerName;
+    public void setItemName(String name) {
+        this.itemName = name;
     }
 
     public int getHp() {
@@ -83,5 +84,3 @@ public class OpponentModel extends BaseModel{
 
     public int getId(){return this.id;}
 }
-
-
