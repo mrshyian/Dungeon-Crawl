@@ -10,6 +10,7 @@ public abstract class Item implements Drawable {
     private int attackUpper = 0;
     private int shieldUpper = 0;
     private String description = "Item";
+    private int id;
 
     public Item(Cell cell, int price) {
         this.cell = cell;
@@ -22,6 +23,12 @@ public abstract class Item implements Drawable {
     }
 
     public void setCell(Cell cell) { this.cell = cell; }
+
+    public int getX() {
+        return this.cell.getX();
+    }
+
+    public int getY() { return this.cell.getY(); }
 
     public int getPrice() { return price; }
 
@@ -42,4 +49,8 @@ public abstract class Item implements Drawable {
     public int getShieldUpper() { return shieldUpper; }
 
     public void setShieldUpper(int shieldUpper) { this.shieldUpper = shieldUpper;}
+
+    public int getId(){return this.id;}
+
+    public void setId(int id){this.id = id;}
 }

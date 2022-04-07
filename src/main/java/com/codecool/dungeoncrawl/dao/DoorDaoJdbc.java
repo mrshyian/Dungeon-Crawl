@@ -57,8 +57,7 @@ public class DoorDaoJdbc implements DoorDao {
             if (!door.next()) {
                 return null;
             }
-            DoorModel doorModel = new DoorModel(door.getInt(1), door.getInt(2), door.getBoolean(3));
-            doorModel.setId(id);
+            DoorModel doorModel = new DoorModel(id, door.getInt(1), door.getInt(2), door.getBoolean(3));
             return doorModel;
         } catch (SQLException e) {
             throw new RuntimeException("Error while reading game item id: " + id, e);
@@ -68,12 +67,11 @@ public class DoorDaoJdbc implements DoorDao {
     @Override
     public List<DoorModel> getAll() {
         try (Connection conn = dataSource.getConnection()) {
-            String sql = "SELECT x, y, is_open FROM door";
+            String sql = "SELECT id, x, y, is_open FROM door";
             ResultSet result = conn.createStatement().executeQuery(sql);
             List<DoorModel> doors = new ArrayList<>();
             while (result.next()) {
-                DoorModel door = new DoorModel(result.getInt(1), result.getInt(2), result.getBoolean(3));
-                door.setId(result.getInt(1));
+                DoorModel door = new DoorModel(result.getInt(1), result.getInt(2), result.getInt(3), result.getBoolean(4));
                 doors.add(door);
             }
             return doors;
