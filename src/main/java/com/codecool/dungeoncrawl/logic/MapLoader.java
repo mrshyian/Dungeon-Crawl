@@ -289,6 +289,16 @@ public class MapLoader {
                 ((Item) object).setCell(cellForActor);
             }
 
+            if (object instanceof Door){
+                Cell doorCell = map.getCell(((Door) object).getCell().getX(), ((Door) object).getCell().getY());
+                if (((Door) object).isOpen()){
+                    doorCell.setType(CellType.DOOROPEN);
+                } else {
+                    doorCell.setType(CellType.DOORCLOSE);
+                }
+                doorCell.setCellContent((Door) object);
+                ((Door) object).setCell(doorCell);
+            }
         }
     }
 

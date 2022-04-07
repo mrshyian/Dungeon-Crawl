@@ -58,6 +58,9 @@ public class JSONsave {
         if (!itemsList.isEmpty()){
             gameSave.add(itemsList);
         }
+        if (!doorsList.isEmpty()){
+            gameSave.add(doorsList);
+        }
         gameSave.add(mapLink);
 
         return gameSave;

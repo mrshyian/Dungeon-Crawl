@@ -102,8 +102,8 @@ public class JSONextract {
                 }
 
                 if (keys.contains("Door Type")){
-                    Door item = createDoor((JSONObject) drawableInstance);
-                    addToAllObjectsList(item);
+                    Door door = createDoor((JSONObject) drawableInstance);
+                    addToAllObjectsList(door);
                 }
             }
         }
