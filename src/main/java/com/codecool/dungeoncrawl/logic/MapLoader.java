@@ -12,6 +12,7 @@ import org.json.simple.JSONObject;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class MapLoader {
@@ -28,21 +29,28 @@ public class MapLoader {
             flag = 0;
         }
         ArrayList<Object> allObjects = JSONDatabaseManager.getSave();
-        for (Object obj : allObjects){
-            if (obj instanceof Integer){
-                switch ((int) obj) {
-                    case 1:
-                        flag = 3;
-                        break;
-                    case 2:
-                        flag = 4;
-                        break;
-                    case 3:
-                        flag = 5;
-                        break;
+        for (Object objectToSearchPlayerName : allObjects) {
+            if (objectToSearchPlayerName instanceof Player) {
+                if (Objects.equals(((Player) objectToSearchPlayerName).getName(), playerName)){
+                    for (Object obj : allObjects){
+                        if (obj instanceof Integer){
+                            switch ((int) obj) {
+                                case 1:
+                                    flag = 3;
+                                    break;
+                                case 2:
+                                    flag = 4;
+                                    break;
+                                case 3:
+                                    flag = 5;
+                                    break;
+                            }
+                        }
+                    }
                 }
             }
         }
+
         System.out.println(flag);
         InputStream is = MapLoader.class.getResourceAsStream(maps[flag]);
         flag++;
